@@ -76,11 +76,18 @@
     }
 }
 
-.header-content {
+.main-header .header-content {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.post-list-header .header-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-right: 33px;
 }
 
 .logo-section {
@@ -723,13 +730,6 @@
     background: #7b7b7b;
 }
 
-.header-content {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-right: 33px;
-}
-
 .header-text {
     flex: 1;
 }
@@ -772,7 +772,7 @@
 .more-btn i {
     font-size: 12px;
     color: var(--secondary-color);
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .more-btn:hover i {
@@ -827,7 +827,7 @@
     font-weight: 600;
     text-decoration: none;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .category-link:hover {
@@ -893,6 +893,10 @@
     align-items: center;
     gap: 4px;
 }
+
+/* ========================================
+   POST LIST RESPONSIVE DESIGN
+   ======================================== */
 
 /* ========================================
    POST LIST RESPONSIVE DESIGN
@@ -971,10 +975,11 @@
         min-width: 28px;
     }
     
-    .header-content {
+    .post-list-header .header-content {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
+        margin-right: 0;
     }
     
     .more-btn {
@@ -984,12 +989,14 @@
 
 /* Focus Styles for Accessibility */
 .nav-link:focus-visible,
-.search-field:focus-visible {
+.search-field:focus-visible,
+.hamburger:focus-visible {
     outline: 2px solid rgba(255, 255, 255, 0.8);
     outline-offset: 2px;
 }
 
-.hamburger:focus-visible {
-    outline: 2px solid rgba(255, 255, 255, 0.8);
+.category-link:focus-visible,
+.post-title a:focus-visible {
+    outline: 2px solid var(--primary-color);
     outline-offset: 2px;
 }
