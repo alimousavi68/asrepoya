@@ -27,45 +27,29 @@
                     <li class="nav-item px-2">
                         <a href="#" class="nav-link active">خانه</a>
                     </li>
-                    <li class="nav-item px-2 dropdown-parent">
-                        <a href="#" class="nav-link d-flex align-items-center" aria-haspopup="true" aria-expanded="false">
+                    <li class="nav-item px-2 dropdown">
+                        <a href="#" class="nav-link dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
                             گروه‌ها
-                            <i class="fas fa-chevron-down dropdown-arrow ms-1" aria-hidden="true"></i>
                         </a>
-                        <!-- Desktop Mega Menu -->
-                        <div class="mega-menu">
-                            <div class="container-fluid">
-                                <div class="row py-4">
-                                    <div class="col-md-4">
-                                        <h5 class="mega-menu-title">گروه‌های پژوهشی</h5>
-                                        <ul class="mega-menu-list">
-                                            <li><a href="#">حکمرانی اقتصادی</a></li>
-                                            <li><a href="#">حکمرانی اجتماعی</a></li>
-                                            <li><a href="#">حکمرانی سیاسی</a></li>
-                                            <li><a href="#">حکمرانی فرهنگی</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h5 class="mega-menu-title">مراکز تخصصی</h5>
-                                        <ul class="mega-menu-list">
-                                            <li><a href="#">مرکز مطالعات راهبردی</a></li>
-                                            <li><a href="#">مرکز نوآوری</a></li>
-                                            <li><a href="#">مرکز آموزش</a></li>
-                                            <li><a href="#">مرکز مشاوره</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h5 class="mega-menu-title">کمیته‌ها</h5>
-                                        <ul class="mega-menu-list">
-                                            <li><a href="#">کمیته علمی</a></li>
-                                            <li><a href="#">کمیته اجرایی</a></li>
-                                            <li><a href="#">کمیته بین‌المللی</a></li>
-                                            <li><a href="#">کمیته فناوری</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <ul class="dropdown-menu">
+                            <li><h6 class="dropdown-header">گروه‌های پژوهشی</h6></li>
+                            <li><a class="dropdown-item" href="#">حکمرانی اقتصادی</a></li>
+                            <li><a class="dropdown-item" href="#">حکمرانی اجتماعی</a></li>
+                            <li><a class="dropdown-item" href="#">حکمرانی سیاسی</a></li>
+                            <li><a class="dropdown-item" href="#">حکمرانی فرهنگی</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">مراکز تخصصی</h6></li>
+                            <li><a class="dropdown-item" href="#">مرکز مطالعات راهبردی</a></li>
+                            <li><a class="dropdown-item" href="#">مرکز نوآوری</a></li>
+                            <li><a class="dropdown-item" href="#">مرکز آموزش</a></li>
+                            <li><a class="dropdown-item" href="#">مرکز مشاوره</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><h6 class="dropdown-header">کمیته‌ها</h6></li>
+                            <li><a class="dropdown-item" href="#">کمیته علمی</a></li>
+                            <li><a class="dropdown-item" href="#">کمیته اجرایی</a></li>
+                            <li><a class="dropdown-item" href="#">کمیته بین‌المللی</a></li>
+                            <li><a class="dropdown-item" href="#">کمیته فناوری</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item px-2">
                         <a href="#" class="nav-link">گزارش‌ها</a>
@@ -162,15 +146,7 @@
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-                    <div class="search-suggestions">
-                        <h6>جستجوهای پیشنهادی:</h6>
-                        <div class="suggestion-tags">
-                            <span class="suggestion-tag">حکمرانی</span>
-                            <span class="suggestion-tag">گزارش‌ها</span>
-                            <span class="suggestion-tag">نشست‌ها</span>
-                            <span class="suggestion-tag">انتشارات</span>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -246,18 +222,7 @@
             });
         }
         
-        // Suggestion tags functionality
-        const suggestionTags = document.querySelectorAll('.suggestion-tag');
-        const searchModalInput = document.querySelector('.search-modal-input');
-        
-        suggestionTags.forEach(tag => {
-            tag.addEventListener('click', function() {
-                if (searchModalInput) {
-                    searchModalInput.value = this.textContent;
-                    searchModalInput.focus();
-                }
-            });
-        });
+
         
         // Close modal with Escape key
         document.addEventListener('keydown', function(e) {
