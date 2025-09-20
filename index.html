@@ -2,29 +2,36 @@
 <html lang="fa" dir="rtl">
 
 <head>
+    <!-- تنظیمات پایه و متاداده -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>هدر اندیشکده حکمرانی</title>
 
+    <!-- کتابخانه‌های خارجی -->
+    <!-- Bootstrap CSS برای طراحی ریسپانسیو -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome برای آیکون‌ها -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- فونت فارسی وزیرمتن -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
 
+    <!-- استایل‌های سفارشی پروژه -->
     <link href="assets/css/custom_style.css" rel="stylesheet">
 </head>
 
 <body>
-    <!-- Header -->
+    <!-- ========== بخش هدر اصلی ========== -->
+    <!-- شامل لوگو، منوی ناوبری، جستجو و دکمه‌های اجتماعی -->
     <header class="main-header container-full p-0 align-content-center">
-        <!-- Desktop Layout -->
+        <!-- طرح‌بندی دسکتاپ - نمایش در صفحات بزرگ -->
         <div class="container-header d-none d-lg-flex justify-content-between align-items-center py-3">
-            <!-- Logo Section -->
+            <!-- بخش لوگو و شناسه سازمان -->
             <div class="d-flex align-items-center">
                 <a href="#"><img src="assets/images/Logo-asre-poya.svg" alt="اندیشکده حکمرانی" class="me-2"></a>
                 <div class="separator ms-2"></div>
             </div>
 
-            <!-- Navigation Section -->
+            <!-- بخش منوی ناوبری اصلی -->
             <nav class="nav-section" role="navigation">
                 <ul class="main-nav d-flex list-unstyled m-0">
                     <li class="nav-item px-2">
@@ -169,14 +176,17 @@
             </div>
         </div>
     </header>
-    <main class="container-fluid d-flex flex-column gap-5 py-4">
+    <!-- Main Content Area -->
+    <main class="container-fluid d-flex flex-column gap-5 py-4 px-0" role="main">
 
-        <!-- Hero Slider -->
-        <section class="Herobox container py-4">
+        <!-- Hero Slider Section -->
+        <section class="Herobox container py-4" aria-labelledby="hero-section-title">
+            <h2 id="hero-section-title" class="visually-hidden">اسلایدر اصلی و اخبار مهم</h2>
             <div class="row">
-                <!-- Right column - Takes up 2/3 of the width -->
+                <!-- Hero Slider Column -->
                 <div class="col-lg-8">
-                    <div class="hero-slider">
+                    <div class="hero-slider" role="region" aria-labelledby="hero-carousel-title">
+                        <h3 id="hero-carousel-title" class="visually-hidden">اسلایدر اخبار اصلی</h3>
                         <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel"
                             data-bs-interval="5000" data-bs-wrap="true">
                             <!-- Custom Controls -->
@@ -280,10 +290,11 @@
                     </div>
                 </div>
 
-                <!-- Left column - Takes up 1/3 of the width -->
+                <!-- News Sidebar Column -->
                 <div class="col-lg-4">
-                    <!-- Post List Vertical Block -->
-                    <div class="post-list-vertical">
+                    <!-- Important News Section -->
+                    <aside class="post-list-vertical" role="complementary" aria-labelledby="important-news-title">
+                        <h3 id="important-news-title" class="visually-hidden">اخبار مهم</h3>
                         <!-- Header with More Button -->
                         <div class="post-list-header">
                             <div class="header-content">
@@ -374,15 +385,16 @@
                                 </div>
                             </article>
                         </div>
-                    </div>
+                    </aside>
                 </div>
             </div>
         </section>
 
-        <!-- Featured Posts Section -->
-        <section class="featured-posts-section container">
-            <!-- Header with More Button -->
-            <div class="post-list-header">
+        <!-- Featured Reports Section -->
+        <section class="featured-posts-section container" aria-labelledby="featured-reports-title">
+            <h2 id="featured-reports-title" class="visually-hidden">گزارش‌های تخصصی</h2>
+            <!-- Section Header -->
+            <header class="post-list-header">
                 <div class="header-content">
                     <div class="header-text">
                         <h3 class="post-list-title fw-bold pe-4">گزارش‌های تخصصی</h3>
@@ -393,11 +405,11 @@
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 </div>
-            </div>
+            </header>
 
-            <!-- Main Content Grid -->
+            <!-- Reports Content Grid -->
             <div class="row align-items-stretch">
-                <!-- Featured Post (Right Column) -->
+                <!-- Main Featured Report -->
                 <div class="col-lg-6 order-lg-1 order-2">
                     <article class="featured-post-card">
                         <div class="featured-image">
@@ -513,10 +525,11 @@
         </section>
 
         <!-- Multimedia Section -->
-        <section class="container-fluid multimedia-section py-5 ">
+        <section class="container-fluid multimedia-section py-5" aria-labelledby="multimedia-title">
             <div class="container-content">
-                <!-- Header with More Button -->
-                <div class="post-list-header">
+                <h2 id="multimedia-title" class="visually-hidden">بخش چندرسانه‌ای</h2>
+                <!-- Section Header -->
+                <header class="post-list-header">
                     <div class="header-content">
                         <div class="header-text">
                             <h3 class="post-list-title fw-bold pe-4">چند رسانه ای</h3>
@@ -527,11 +540,11 @@
                             <i class="fas fa-chevron-left"></i>
                         </a>
                     </div>
-                </div>
+                </header>
 
-                <!-- Main Content Row -->
+                <!-- Multimedia Content Grid -->
                 <div class="row g-4">
-                    <!-- Featured Video (Right Column) -->
+                    <!-- Featured Video Column -->
                     <div class="col-lg-6">
                         <article class="featured-video-card">
                             <div class="featured-video-image position-relative">
@@ -574,9 +587,11 @@
                         </article>
                     </div>
 
-                    <!-- Video Grid (Left Column) -->
+                    <!-- Video Gallery Column -->
                     <div class="col-lg-6">
-                        <div class="video-grid bg-white h-100 p-4">
+                        <aside class="video-grid bg-white h-100 p-4" role="complementary"
+                            aria-labelledby="video-gallery-title">
+                            <h3 id="video-gallery-title" class="visually-hidden">گالری ویدیوها</h3>
                             <div class="row g-3 h-100">
                                 <!-- Video Card 1 -->
                                 <div class="col-6">
@@ -695,21 +710,21 @@
                                     </article>
                                 </div>
                             </div>
-                        </div>
+                        </aside>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- post section -->
-        <section class="container-fluid py-0 px-0 post-section">
+        <!-- Professional Sessions Section -->
+        <section class="container-fluid py-0 px-0 post-section" aria-labelledby="sessions-title">
             <div class="row g-0 align-items-start">
 
-                <!-- Header Section -->
-                <div class="post-list-header container " style="width:1320px;">
+                <!-- Section Header -->
+                <header class="post-list-header ">
                     <div class="header-content">
                         <div class="header-text">
-                            <h2 class="post-list-title fw-bold pe-4">نشست‌های تخصصی</h2>
+                            <h2 id="sessions-title" class="post-list-title fw-bold pe-4">نشست‌های تخصصی</h2>
                             <p class="post-list-subtitle pe-4 text-black-50">آخرین رویدادهای برگزار شده توسط مرکز</p>
                         </div>
                         <a href="#" class="more-btn">
@@ -717,9 +732,9 @@
                             <i class="fas fa-chevron-left"></i>
                         </a>
                     </div>
-                </div>
+                </header>
 
-                <!-- ستون راست - محتوای متنی -->
+                <!-- Session Content Column -->
                 <div class="col-lg-6 bg-dark-900 text-white post-section-content pe-5">
                     <div class="content-inner">
 
@@ -743,7 +758,7 @@
                                         class="rounded-circle">
                                 </div>
                                 <div class="host-info">
-                                    <div class="host-name text-black-50">میزبان: دکتر احسان قدری</div>
+                                    <div class="host-name text-black">میزبان: دکتر احسان قدری</div>
                                     <div class="host-role text-black-50">اقتصاد دان و عضو هیئت علمی عضو پویا</div>
                                 </div>
                             </div>
@@ -755,7 +770,7 @@
                         <!-- Second Post -->
                         <div class="second-post">
                             <h4 class="second-post-title">
-                                <a href="#" class="text-black-50">خط‌مشی‌گذاری کرونا و سیاست ورزی در کشکش نهادی؛
+                                <a href="#" class="text-black">خط‌مشی‌گذاری کرونا و سیاست ورزی در کشکش نهادی؛
                                     چالش‌های تربیت سیاسی و کیفیت حکمرانی در ایران</a>
                             </h4>
                             <div class="second-post-meta">
@@ -767,129 +782,131 @@
                     </div>
                 </div>
 
-                <!-- ستون چپ - تصویر تمام‌قد -->
+                <!-- Session Image Column -->
                 <div class="col-lg-6 p-0">
-                    <div class="featured-post-image">
+                    <figure class="featured-post-image">
                         <img src="https://picsum.photos/720/560?random=1"
                             alt="سلسله نشست‌های اقتصادی پیرامون ظرفیت‌های اقتصاد ایران در توسعه صادرات غیر نفتی کشور"
                             class="w-100 h-100">
-                    </div>
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <!-- Event List Section -->
-        <section class="event-list-section">
+        <!-- Upcoming Events Section -->
+        <section class="event-list-section" aria-labelledby="upcoming-events-title">
             <div class="container-content">
-                <!-- Header with More Button -->
-                <div class="post-list-header">
+                <h2 id="upcoming-events-title" class="visually-hidden">رویدادهای پیش رو</h2>
+                <!-- Section Header -->
+                <header class="post-list-header">
                     <div class="header-content">
                         <div class="header-text">
                             <h3 class="post-list-title fw-bold pe-4">رویدادهای پیش رو</h3>
-                            <p class="post-list-subtitle pe-4">آخرین رویدادهای عصر پویا</p>
+                            <p class="post-list-subtitle pe-4 text-black-50">آخرین رویدادهای عصر پویا</p>
                         </div>
                         <a href="#" class="more-btn">
                             <span>بیشتر</span>
                             <i class="fas fa-chevron-left"></i>
                         </a>
                     </div>
-                </div>
+            </div>
 
-                <!-- Event Cards Grid -->
-                <div class="row g-4">
-                    <!-- Event Card 1 -->
-                    <div class="col-lg-6">
-                        <div class="event-card border  bg-white h-100 overflow-hidden">
-                            <div class="row g-0 align-items-stretch">
-                                <!-- Event Image (Right Side) -->
-                                <div class="col-md-5">
-                                    <div class="ratio ratio-1x1">
-                                        <img src="https://picsum.photos/188/268?random=1"
-                                            alt="نمایشگاه بین‌المللی کتاب تهران اردیبهشت آغاز به کار می‌کند"
-                                            class="event-image">
-                                    </div>
+            <!-- Event Cards Grid -->
+            <div class="row g-4 container-content">
+                <!-- Event Card 1 -->
+                <div class="col-lg-6">
+                    <div class="event-card border  bg-white h-100 overflow-hidden">
+                        <div class="row g-0 align-items-stretch">
+                            <!-- Event Image (Right Side) -->
+                            <div class="col-md-5">
+                                <div class="ratio ratio-1x1">
+                                    <img src="https://picsum.photos/188/268?random=1"
+                                        alt="نمایشگاه بین‌المللی کتاب تهران اردیبهشت آغاز به کار می‌کند"
+                                        class="event-image">
                                 </div>
+                            </div>
 
-                                <!-- Event Content (Left Side) -->
-                                <div class="col-md-7 d-flex flex-column justify-content-between p-4 pb-0 ps-0">
-                                    <div>
-                                        <h3 class="event-title">
-                                            <a href="#">نمایشگاه بین‌المللی کتاب تهران اردیبهشت آغاز به کار می‌کند</a>
-                                        </h3>
-                                        <p class="event-lead">مهمی است که برای اعتضار فرهنگ و یا برگزاری فرهنگ و یا
-                                            معرفی کتاب، مهم‌ترین رویدادهای فرهنگی و یا معرفی کتاب، مهم‌ترین رویدادهای
-                                            فرهنگی طراحی آگاهی و یا معرفی کتاب مرکز کار کند</p>
-                                    </div>
-                                    <div class="event-meta d-flex align-items-center flex-wrap gap-3 text-muted bg-body-secondary py-0 ps-0"
-                                        aria-label="تاریخ: ۱۴۰۳/۰۲/۰۴، مکان: تهران، اندیشکده عصر پویا">
+                            <!-- Event Content (Left Side) -->
+                            <div class="col-md-7 d-flex flex-column justify-content-between p-4 pb-0 ps-0">
+                                <div>
+                                    <h3 class="event-title">
+                                        <a href="#">نمایشگاه بین‌المللی کتاب تهران اردیبهشت آغاز به کار می‌کند</a>
+                                    </h3>
+                                    <p class="event-lead">مهمی است که برای اعتضار فرهنگ و یا برگزاری فرهنگ و یا
+                                        معرفی کتاب، مهم‌ترین رویدادهای فرهنگی و یا معرفی کتاب، مهم‌ترین رویدادهای
+                                        فرهنگی طراحی آگاهی و یا معرفی کتاب مرکز کار کند</p>
+                                </div>
+                                <div class="event-meta d-flex align-items-center flex-wrap gap-3 text-muted bg-body-secondary py-0 ps-0"
+                                    aria-label="تاریخ: ۱۴۰۳/۰۲/۰۴، مکان: تهران، اندیشکده عصر پویا">
 
-                                        <span
-                                            class="event-date d-flex align-items-center  p-2 px-4 d-flex flex-column gap-1">
-                                            <span class="fw-bold fs-5  text-white">۲۷</span>
-                                            <span class="fw-normal fs-5  text-white">مهر</span>
-                                        </span>
+                                    <span
+                                        class="event-date d-flex align-items-center  p-2 px-4 d-flex flex-column gap-1">
+                                        <span class="fw-bold fs-5  text-white">۲۷</span>
+                                        <span class="fw-normal fs-5  text-white">مهر</span>
+                                    </span>
 
-                                        <span class="event-location d-flex align-items-center p-2">
-                                            <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
-                                            تهران، اندیشکده عصر پویا
-                                        </span>
-                                    </div>
+                                    <span class="event-location d-flex align-items-center p-2">
+                                        <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
+                                        تهران، اندیشکده عصر پویا
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Event Card 2 -->
-                    <div class="col-lg-6">
-                        <div class="event-card border  bg-white h-100 overflow-hidden">
-                            <div class="row g-0 align-items-stretch">
-                                <!-- Event Image (Right Side) -->
-                                <div class="col-md-5">
-                                    <div class="ratio ratio-1x1">
-                                        <img src="https://picsum.photos/188/268?random=1"
-                                            alt="نمایشگاه بین‌المللی کتاب تهران اردیبهشت آغاز به کار می‌کند"
-                                            class="event-image">
-                                    </div>
+                <!-- Event Card 2 -->
+                <div class="col-lg-6">
+                    <div class="event-card border  bg-white h-100 overflow-hidden">
+                        <div class="row g-0 align-items-stretch">
+                            <!-- Event Image (Right Side) -->
+                            <div class="col-md-5">
+                                <div class="ratio ratio-1x1">
+                                    <img src="https://picsum.photos/188/268?random=1"
+                                        alt="نمایشگاه بین‌المللی کتاب تهران اردیبهشت آغاز به کار می‌کند"
+                                        class="event-image">
                                 </div>
+                            </div>
 
-                                <!-- Event Content (Left Side) -->
-                                <div class="col-md-7 d-flex flex-column justify-content-between p-4 pb-0 ps-0">
-                                    <div>
-                                        <h3 class="event-title">
-                                            <a href="#">نمایشگاه بین‌المللی کتاب تهران اردیبهشت آغاز به کار می‌کند</a>
-                                        </h3>
-                                        <p class="event-lead">مهمی است که برای اعتضار فرهنگ و یا برگزاری فرهنگ و یا
-                                            معرفی کتاب، مهم‌ترین رویدادهای فرهنگی و یا معرفی کتاب، مهم‌ترین رویدادهای
-                                            فرهنگی طراحی آگاهی و یا معرفی کتاب مرکز کار کند</p>
-                                    </div>
-                                    <div class="event-meta d-flex align-items-center flex-wrap gap-3 text-muted bg-body-secondary py-0 ps-0"
-                                        aria-label="تاریخ: ۱۴۰۳/۰۲/۰۴، مکان: تهران، اندیشکده عصر پویا">
+                            <!-- Event Content (Left Side) -->
+                            <div class="col-md-7 d-flex flex-column justify-content-between p-4 pb-0 ps-0">
+                                <div>
+                                    <h3 class="event-title">
+                                        <a href="#">نمایشگاه بین‌المللی کتاب تهران اردیبهشت آغاز به کار می‌کند</a>
+                                    </h3>
+                                    <p class="event-lead">مهمی است که برای اعتضار فرهنگ و یا برگزاری فرهنگ و یا
+                                        معرفی کتاب، مهم‌ترین رویدادهای فرهنگی و یا معرفی کتاب، مهم‌ترین رویدادهای
+                                        فرهنگی طراحی آگاهی و یا معرفی کتاب مرکز کار کند</p>
+                                </div>
+                                <div class="event-meta d-flex align-items-center flex-wrap gap-3 text-muted bg-body-secondary py-0 ps-0"
+                                    aria-label="تاریخ: ۱۴۰۳/۰۲/۰۴، مکان: تهران، اندیشکده عصر پویا">
 
-                                        <span
-                                            class="event-date d-flex align-items-center  p-2 px-4 d-flex flex-column gap-1">
-                                            <span class="fw-bold fs-5  text-white">۲۷</span>
-                                            <span class="fw-normal fs-5  text-white">مهر</span>
-                                        </span>
+                                    <span
+                                        class="event-date d-flex align-items-center  p-2 px-4 d-flex flex-column gap-1">
+                                        <span class="fw-bold fs-5  text-white">۲۷</span>
+                                        <span class="fw-normal fs-5  text-white">مهر</span>
+                                    </span>
 
-                                        <span class="event-location d-flex align-items-center p-2">
-                                            <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
-                                            تهران، اندیشکده عصر پویا
-                                        </span>
-                                    </div>
+                                    <span class="event-location d-flex align-items-center p-2">
+                                        <i class="fas fa-map-marker-alt me-1" aria-hidden="true"></i>
+                                        تهران، اندیشکده عصر پویا
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </div>
         </section>
 
 
-        <!-- Book Carousel Section -->
-        <section class="book-carousel-section bg-navy  ">
-            <div class="container">
-                <!-- Header with More Button -->
-                <div class="post-list-header">
+        <!-- Publications Section -->
+        <section class="book-carousel-section  container-fluid py-5 mx-0 px-0" aria-labelledby="publications-title">
+            <div class="container-content py-5">
+                <h2 id="publications-title" class="visually-hidden">انتشارات</h2>
+                <!-- Section Header -->
+                <header class="post-list-header">
                     <div class="header-content">
                         <div class="header-text">
                             <h3 class="post-list-title fw-bold pe-4">چند رسانه ای</h3>
@@ -900,14 +917,16 @@
                             <i class="fas fa-chevron-left"></i>
                         </a>
                     </div>
-                </div>
+                </header>
 
-                <!-- Carousel Container -->
+                <!-- Publications Carousel Container -->
                 <div class="carousel-container position-relative">
-                    <!-- Carousel Box -->
-                    <div class="carousel-box bg-white  shadow-lg p-5">
+                    <!-- Carousel Content Box -->
+                    <div class="carousel-box bg-white shadow-lg p-5">
                         <div id="bookCarousel" class="carousel carousel-fade" data-bs-ride="carousel"
-                            data-bs-interval="5000" data-bs-pause="hover" data-bs-wrap="true">
+                            data-bs-interval="5000" data-bs-pause="hover" data-bs-wrap="true" role="region"
+                            aria-labelledby="book-carousel-label">
+                            <h3 id="book-carousel-label" class="visually-hidden">کاروسل انتشارات</h3>
                             <div class="carousel-inner">
                                 <!-- Slide 1 -->
                                 <div class="carousel-item active">
@@ -1048,27 +1067,29 @@
             </div>
         </section>
 
-        <!-- Courses Grid Section -->
-        <section class="courses-grid-section container my-5">
-            <!-- Header with More Button -->
-            <div class="post-list-header">
+        <!-- Educational Courses Section -->
+        <section class="courses-grid-section container my-5" aria-labelledby="courses-title">
+            <h2 id="courses-title" class="visually-hidden">دوره‌های آموزشی</h2>
+            <!-- Section Header -->
+            <header class="post-list-header">
                 <div class="header-content">
                     <div class="header-text">
                         <h3 class="post-list-title fw-bold pe-4">دوره‌های آموزشی</h3>
-                        <p class="post-list-subtitle pe-4">آخرین دوره‌های آموزشی و تخصصی</p>
+                        <p class="post-list-subtitle text-black-50 pe-4">آخرین دوره‌های آموزشی و تخصصی</p>
                     </div>
                     <a href="#" class="more-btn">
                         <span>مشاهده بیشتر</span>
                         <i class="fas fa-chevron-left"></i>
                     </a>
                 </div>
-            </div>
+            </header>
 
             <!-- Courses Grid -->
-            <div class="row g-4">
+            <div class="row g-4" role="list" aria-labelledby="courses-grid-title">
+                <h3 id="courses-grid-title" class="visually-hidden">فهرست دوره‌های آموزشی</h3>
                 <!-- Course Card 1 -->
-                <div class="col-xl-3 col-lg-3 col-md-6 col-12">
-                    <div class="course-card border rounded-3 bg-white h-100 overflow-hidden">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-12" role="listitem">
+                    <article class="course-card border  bg-white h-100 overflow-hidden">
                         <!-- Course Image with Ribbon -->
                         <div class="course-image-wrapper position-relative ratio ratio-16x9">
                             <img src="https://picsum.photos/310/175?random=1" alt="دوره مدیریت پروژه"
@@ -1105,12 +1126,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
 
                 <!-- Course Card 2 -->
-                <div class="col-xl-3 col-lg-3 col-md-6 col-12">
-                    <div class="course-card border rounded-3 bg-white h-100 overflow-hidden">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-12" role="listitem">
+                    <article class="course-card border  bg-white h-100 overflow-hidden">
                         <!-- Course Image with Ribbon -->
                         <div class="course-image-wrapper position-relative ratio ratio-16x9">
                             <img src="https://picsum.photos/310/175?random=1" alt="دوره هوش مصنوعی"
@@ -1148,12 +1169,12 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </article>
                 </div>
 
                 <!-- Course Card 3 -->
-                <div class="col-xl-3 col-lg-3 col-md-6 col-12">
-                    <div class="course-card border rounded-3 bg-white h-100 overflow-hidden">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-12" role="listitem">
+                    <article class="course-card border  bg-white h-100 overflow-hidden">
                         <!-- Course Image with Ribbon -->
                         <div class="course-image-wrapper position-relative ratio ratio-16x9">
                             <img src="https://picsum.photos/310/175?random=1" alt="دوره امنیت سایبری"
@@ -1190,12 +1211,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </div>
-
                 <!-- Course Card 4 -->
                 <div class="col-xl-3 col-lg-3 col-md-6 col-12">
-                    <div class="course-card border rounded-3 bg-white h-100 overflow-hidden">
+                    <div class="course-card border  bg-white h-100 overflow-hidden">
                         <!-- Course Image with Ribbon -->
                         <div class="course-image-wrapper position-relative ratio ratio-16x9">
                             <img src="https://picsum.photos/310/175?random=1" alt="دوره توسعه وب" class="course-image">
@@ -1235,121 +1254,127 @@
                 </div>
             </div>
 
+
+            </div>
+
         </section>
 
         <!-- Research Groups Section -->
-            <section class="research-groups-section">
+        <section class="research-groups-section" aria-labelledby="research-groups-title">
+            <div class="container">
+                <h2 id="research-groups-title" class="visually-hidden">گروه‌های پژوهشی</h2>
+                <!-- Section Header -->
+                <header class="post-list-header">
+                    <div class="header-content">
+                        <div class="header-text">
+                            <h3 class="post-list-title fw-bold pe-4">گروه های پژوهشی</h3>
+                            <p class="post-list-subtitle text-black-50 pe-4">آخرین رویدادهای عصر پویا</p>
+                        </div>
+                        <a href="#" class="more-btn">
+                            <span>بیشتر</span>
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </div>
+                </header>
+
+
+                <!-- Research Groups Cards -->
                 <div class="container">
-                    <!-- Header with More Button -->
-                    <div class="post-list-header">
-                        <div class="header-content">
-                            <div class="header-text">
-                                <h3 class="post-list-title fw-bold pe-4">گروه های پژوهشی</h3>
-                                <p class="post-list-subtitle pe-4">آخرین رویدادهای عصر پویا</p>
-                            </div>
-                            <a href="#" class="more-btn">
-                                <span>بیشتر</span>
-                                <i class="fas fa-chevron-left"></i>
-                            </a>
+                    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-5" role="list"
+                        aria-labelledby="research-groups-grid-title">
+                        <h3 id="research-groups-grid-title" class="visually-hidden">فهرست گروه‌های پژوهشی</h3>
+                        <!-- Card 1: Banking and Finance -->
+                        <div class="col border-end" role="listitem">
+                            <article class="research-group-card" aria-label="گروه پژوهشی: مطالعات پول، بانک و ارز">
+                                <div class="icon-circle">
+                                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" aria-hidden="true">
+                                        <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">مطالعات پول، بانک و ارز</h3>
+                                <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                    چاپ</p>
+                            </article>
+                        </div>
+
+                        <!-- Card 2: Public Sector Studies -->
+                        <div class="col border-end" role="listitem">
+                            <article class="research-group-card" aria-label="گروه پژوهشی: مطالعات بخش عمومی">
+                                <div class="icon-circle">
+                                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" aria-hidden="true">
+                                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                        <path d="M9 9h6v6H9z" />
+                                        <path d="M9 1v6M15 1v6M9 15v6M15 15v6M1 9h6M1 15h6M15 9h6M15 15h6" />
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">مطالعات بخش عمومی</h3>
+                                <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                    چاپ</p>
+                            </article>
+                        </div>
+
+                        <!-- Card 3: Health Economics -->
+                        <div class="col border-end" role="listitem">
+                            <article class="research-group-card" aria-label="گروه پژوهشی: مطالعات اقتصاد سلامت">
+                                <div class="icon-circle">
+                                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" aria-hidden="true">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                        <polyline points="14,2 14,8 20,8" />
+                                        <line x1="16" y1="13" x2="8" y2="13" />
+                                        <line x1="16" y1="17" x2="8" y2="17" />
+                                        <polyline points="10,9 9,9 8,9" />
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">مطالعات اقتصاد سلامت</h3>
+                                <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                    چاپ</p>
+                            </article>
+                        </div>
+
+                        <!-- Card 4: Regulatory Economics -->
+                        <div class="col border-end" role="listitem">
+                            <article class="research-group-card" aria-label="گروه پژوهشی: مطالعات اقتصاد مقاومتی">
+                                <div class="icon-circle">
+                                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" aria-hidden="true">
+                                        <path d="M9 12l2 2 4-4" />
+                                        <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
+                                        <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
+                                        <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3" />
+                                        <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3" />
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">مطالعات اقتصاد مقاومتی</h3>
+                                <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                    چاپ</p>
+                            </article>
+                        </div>
+
+                        <!-- Card 5: Industrial Development -->
+                        <div class="col " role="listitem">
+                            <article class="research-group-card" aria-label="گروه پژوهشی: مطالعات توسعه صنعتی">
+                                <div class="icon-circle">
+                                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" aria-hidden="true">
+                                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                                        <line x1="8" y1="21" x2="16" y2="21" />
+                                        <line x1="12" y1="17" x2="12" y2="21" />
+                                        <rect x="6" y="7" width="4" height="4" />
+                                        <rect x="14" y="7" width="4" height="4" />
+                                    </svg>
+                                </div>
+                                <h3 class="card-title">مطالعات توسعه صنعتی</h3>
+                                <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
+                                    چاپ</p>
+                            </article>
                         </div>
                     </div>
+                </div>
 
-
-                    <!-- Research Groups Cards -->
-                    <div class="container">
-                        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-5">
-                            <!-- Card 1: Banking and Finance -->
-                            <div class="col border-end">
-                                <div class="research-group-card" aria-label="گروه پژوهشی: مطالعات پول، بانک و ارز">
-                                    <div class="icon-circle">
-                                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="card-title">مطالعات پول، بانک و ارز</h3>
-                                    <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                        چاپ</p>
-                                </div>
-                            </div>
-
-                            <!-- Card 2: Public Sector Studies -->
-                            <div class="col border-end">
-                                <div class="research-group-card" aria-label="گروه پژوهشی: مطالعات بخش عمومی">
-                                    <div class="icon-circle">
-                                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                                            <path d="M9 9h6v6H9z" />
-                                            <path d="M9 1v6M15 1v6M9 15v6M15 15v6M1 9h6M1 15h6M15 9h6M15 15h6" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="card-title">مطالعات بخش عمومی</h3>
-                                    <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                        چاپ</p>
-                                </div>
-                            </div>
-
-                            <!-- Card 3: Health Economics -->
-                            <div class="col border-end">
-                                <div class="research-group-card" aria-label="گروه پژوهشی: مطالعات اقتصاد سلامت">
-                                    <div class="icon-circle">
-                                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                                            <polyline points="14,2 14,8 20,8" />
-                                            <line x1="16" y1="13" x2="8" y2="13" />
-                                            <line x1="16" y1="17" x2="8" y2="17" />
-                                            <polyline points="10,9 9,9 8,9" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="card-title">مطالعات اقتصاد سلامت</h3>
-                                    <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                        چاپ</p>
-                                </div>
-                            </div>
-
-                            <!-- Card 4: Regulatory Economics -->
-                            <div class="col border-end">
-                                <div class="research-group-card" aria-label="گروه پژوهشی: مطالعات اقتصاد مقاومتی">
-                                    <div class="icon-circle">
-                                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <path d="M9 12l2 2 4-4" />
-                                            <path d="M21 12c-1 0-3-1-3-3s2-3 3-3 3 1 3 3-2 3-3 3" />
-                                            <path d="M3 12c1 0 3-1 3-3s-2-3-3-3-3 1-3 3 2 3 3 3" />
-                                            <path d="M12 3c0 1-1 3-3 3s-3-2-3-3 1-3 3-3 3 2 3 3" />
-                                            <path d="M12 21c0-1 1-3 3-3s3 2 3 3-1 3-3 3-3-2-3-3" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="card-title">مطالعات اقتصاد مقاومتی</h3>
-                                    <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                        چاپ</p>
-                                </div>
-                            </div>
-
-                            <!-- Card 5: Industrial Development -->
-                            <div class="col ">
-                                <div class="research-group-card" aria-label="گروه پژوهشی: مطالعات توسعه صنعتی">
-                                    <div class="icon-circle">
-                                        <svg width="56" height="56" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                                            <line x1="8" y1="21" x2="16" y2="21" />
-                                            <line x1="12" y1="17" x2="12" y2="21" />
-                                            <rect x="6" y="7" width="4" height="4" />
-                                            <rect x="14" y="7" width="4" height="4" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="card-title">مطالعات توسعه صنعتی</h3>
-                                    <p class="card-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت
-                                        چاپ</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-            </section>
+        </section>
 
 
     </main>
@@ -1373,7 +1398,7 @@
                                 <i class="fab fa-telegram"></i>
                             </a>
                             <a href="#" class="social-icon" aria-label="ایکس">
-                                <i class="fab fa-x-twitter"></i>
+                                <i class="fab fa-twitter"></i>
                             </a>
                             <a href="#" class="social-icon" aria-label="واتساپ">
                                 <i class="fab fa-whatsapp"></i>
@@ -1395,7 +1420,6 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="footer-about">
                                 <h4 class="footer-title">درباره اندیشکده حکمرانی عصر پویا</h4>
-                                <div class="logo-underline mb-3"></div>
                                 <p class="footer-description">
                                     اندیشکده حکمرانی عصر پویا، نهادی مستقل با ماهیت غیرانتفاعی و غیرتجاری است که با
                                     رویکردی تحلیلی، پژوهشی،تحلیلی است که با رویکردی نقادانه به تحلیل سیاست‌های اقتصادی،
@@ -1454,7 +1478,7 @@
                     <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3">
                         <!-- Copyright (Left) -->
                         <div class="footer-copyright text-center text-lg-end">
-                            <span>© کلیه حقوق متعلق به اندیشکده حکمرانی عصر پویا می‌باشد</span>
+                            <span><i class="fa fa-copyright" aria-hidden="true"></i> کلیه حقوق متعلق به اندیشکده حکمرانی عصر پویا می‌باشد</span>
                         </div>
 
                         <!-- Designer Link (Right) -->
@@ -1462,7 +1486,7 @@
                             <a href="#" class="designer-link">طراحی و توسعه: تیم فنی اندیشکده</a>
                         </div>
 
-                        
+
                     </div>
                 </div>
             </div>
