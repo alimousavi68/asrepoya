@@ -4,11 +4,11 @@
 ?>
 
     <!-- Main Content Area -->
-    <main class="container-fluid d-flex flex-column gap-5 py-4 px-0" role="main">
+    <main class="container-fluid d-flex flex-column gap-5 py-4 px-0 logo-bg" role="main">
 
         <!-- Hero Slider Section -->
         <section class="Herobox container py-4" aria-labelledby="hero-section-title">
-            <h2 id="hero-section-title" class="visually-hidden">اسلایدر اصلی و اخبار مهم</h2>
+            
             <div class="row">
                 <!-- Hero Slider Column -->
                 <div class="col-lg-8">
@@ -32,7 +32,7 @@
                                 <?php
                                 $hero_query = new WP_Query([
                                     'cat' => 8,
-                                    'posts_per_page' => 3,
+                                    'posts_per_page' => 2,
                                 ]);
                                 if ($hero_query->have_posts()) :
                                     $slide_index = 0;
@@ -41,10 +41,11 @@
                                         ?>
                                         <div class="carousel-item <?php echo $active_class; ?>" role="group" aria-roledescription="slide"
                                             aria-label="اسلاید <?php echo $slide_index + 1; ?> از 3">
+                                            
                                             <?php if (has_post_thumbnail()) : ?>
-                                                <?php the_post_thumbnail('full', ['class' => 'd-block w-100', 'alt' => get_the_title(), 'width' => 1600, 'height' => 900]); ?>
+                                                <?php the_post_thumbnail('hero-banner', ['class' => 'd-block w-100', 'alt' => get_the_title(), 'width' => 850, 'height' => 500]); ?>
                                             <?php else : ?>
-                                                <img src="https://picsum.photos/1600/900?random=<?php echo $slide_index + 1; ?>" alt="<?php echo get_the_title(); ?>" class="d-block w-100" width="1600" height="900">
+                                                <img src="#" alt="<?php echo get_the_title(); ?>" class="d-block w-100" width="850" height="500">
                                             <?php endif; ?>
                                             <div class="content-panel">
                                                 <div class="content-wrapper">
@@ -184,9 +185,8 @@
                         <div class="post-items-container">
                             <?php
                             $sidebar_query = new WP_Query([
-                                'cat' => 8,
-                                'posts_per_page' => 4,
-                                'offset' => 3,
+                                'cat' => 7,
+                                'posts_per_page' => 5,
                             ]);
                             if ($sidebar_query->have_posts()) :
                                 $post_number = 1;
@@ -196,11 +196,7 @@
                                     <article class="post-item">
                                         <div class="post-number"><?php echo $post_number; ?></div>
                                         <div class="post-content">
-                                            <div class="post-category-chip">
-                                                <?php if (!empty($category)) : ?>
-                                                    <a href="<?php echo esc_url(get_category_link($category[0]->term_id)); ?>" class="category-link"><?php echo esc_html($category[0]->name); ?></a>
-                                                <?php endif; ?>
-                                            </div>
+                                           
                                             <h3 class="post-title">
                                                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                             </h3>

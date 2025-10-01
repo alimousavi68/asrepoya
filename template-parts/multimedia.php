@@ -7,7 +7,7 @@
 ?>
 
 <!-- Multimedia Section -->
-<section class="container-fluid multimedia-section py-5" aria-labelledby="multimedia-title">
+<section class="container-fluid multimedia-section py-5 section-bg" aria-labelledby="multimedia-title">
     <div class="container-content">
         <h2 id="multimedia-title" class="visually-hidden">بخش چندرسانه‌ای</h2>
         <!-- Section Header -->
@@ -17,7 +17,7 @@
                     <h3 class="post-list-title fw-bold pe-4">چند رسانه ای</h3>
                     <p class="post-list-subtitle pe-4">آخرین ویدیوهای آموزشی و رویدادها</p>
                 </div>
-                <a href="<?php echo get_category_link(8); ?>" class="more-btn">
+                <a href="<?php echo get_category_link(331); ?>" class="more-btn">
                     <span class="text-white">بیشتر</span>
                     <i class="fas fa-chevron-left"></i>
                 </a>
@@ -28,7 +28,7 @@
         <div class="row g-4">
             <?php
             $multimedia_query = new WP_Query(array(
-                'cat' => 8,
+                'cat' => 331,
                 'posts_per_page' => 7,
                 'orderby' => 'date',
                 'order' => 'DESC'

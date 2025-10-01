@@ -454,7 +454,7 @@ body {
     box-shadow: var(--shadow-lg);
     padding: 12px 12px 24px 24px;
     margin-top: 0;
-    min-width: 220px;
+    min-width: 240px;
     z-index: var(--z-dropdown);
     min-height: 150px;
 }
@@ -1012,6 +1012,11 @@ body {
     max-width: 100%;
 }
 
+a:hover {
+    color: var(--secondary-color) !important;
+    transition: color 0.9s ease;
+}
+
 .hero-slider .post-meta {
     display: flex;
     align-items: center;
@@ -1177,7 +1182,7 @@ body {
 
 .hero-slider a:hover {
     color: inherit;
-    text-decoration: underline;
+
 }
 
 .hero-slider .category-badge:hover {
@@ -1351,7 +1356,7 @@ body {
 
 .post-title a:hover {
     color: var(--primary-color);
-    text-decoration: underline;
+
 }
 
 .post-title a:focus-visible {
@@ -1386,10 +1391,7 @@ body {
 .multimedia-section {
     padding: 48px 0;
     background: var(--primary-color);
-    background-image: url('../images/section-bg.svg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+
 }
 
 /* Multimedia Header */
@@ -2340,7 +2342,7 @@ article:hover .small-post-title a::after {
 
 .post-section .more-btn:hover {
     color: #5a9449;
-    text-decoration: underline;
+
 }
 
 /* Featured Post Content */
@@ -2362,14 +2364,13 @@ article:hover .small-post-title a::after {
 }
 
 .featured-post-title a {
-    color: #FFFFFF;
+    color: var(--secondary-color);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .featured-post-title a:hover {
-    color: rgba(255, 255, 255, 1);
-    text-decoration: underline;
+    color: var(--secondary-color);
 }
 
 .featured-post-lead {
@@ -2421,7 +2422,8 @@ article:hover .small-post-title a::after {
     font-weight: 500;
     color: rgba(255, 255, 255, 0.75);
 }
-.i8-bullet{
+
+.i8-bullet {
     color: var(--secondary-color);
     font-size: 16px;
     padding-left: 10px;
@@ -2456,7 +2458,7 @@ article:hover .small-post-title a::after {
 
 .second-post-title a:hover {
     color: rgba(255, 255, 255, 1);
-    text-decoration: underline;
+
 }
 
 .second-post-meta {
@@ -4717,7 +4719,7 @@ article:hover .small-post-title a::after {
 
 .contact-email:hover {
     color: var(--white);
-    text-decoration: underline;
+
 }
 
 .contact-email:focus-visible {
@@ -4776,7 +4778,7 @@ article:hover .small-post-title a::after {
 
 .footer-nav-link:hover {
     color: var(--white);
-    text-decoration: underline;
+
 }
 
 .footer-nav-link:focus-visible {
@@ -4998,6 +5000,21 @@ article:hover .small-post-title a::after {
     color: white;
 }
 
+.logo-bg {
+    background-image: url('../images/modified_svg_with_opacity.svg');
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.section-bg {
+    background-image: url('../images/section-bg.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+}
+
 .research-group-card:hover .icon-circle {
     transform: scale(1.04);
     box-shadow: 0 8px 24px rgba(108, 165, 90, 0.25);
@@ -5005,9 +5022,9 @@ article:hover .small-post-title a::after {
 
 /* Card Title */
 .research-group-card .card-title {
-    font-size: 18px;
+    font-size: 16px;
     line-height: 26px;
-    font-weight: 700;
+    font-weight: 400;
     color: black;
     margin-bottom: 10px;
     display: -webkit-box;
@@ -5231,7 +5248,7 @@ article:hover .small-post-title a::after {
 
 .course-title a:hover {
     color: #17385E;
-    text-decoration: underline;
+
 }
 
 .course-title a:focus-visible {
@@ -5434,7 +5451,7 @@ article:hover .small-post-title a::after {
 
 .book-title a:hover {
     color: var(--primary-color);
-    text-decoration: underline;
+
 }
 
 /* Book Author */
@@ -5501,7 +5518,7 @@ article:hover .small-post-title a::after {
 
 .book-more-link:hover {
     color: var(--primary-color);
-    text-decoration: underline;
+
 }
 
 .book-more-link i {
@@ -5709,7 +5726,7 @@ article:hover .small-post-title a::after {
 
 .event-title a:hover {
     color: #17385E;
-    text-decoration: underline;
+
 }
 
 .event-title a:focus-visible {

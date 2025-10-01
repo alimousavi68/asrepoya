@@ -17,7 +17,7 @@
                     <h3 class="post-list-title fw-bold pe-4">رویدادهای پیش رو</h3>
                     <p class="post-list-subtitle pe-4 text-black-50">آخرین رویدادهای عصر پویا</p>
                 </div>
-                <a href="<?php echo get_category_link(8); ?>" class="more-btn">
+                <a href="<?php echo get_category_link(330); ?>" class="more-btn">
                     <span>بیشتر</span>
                     <i class="fas fa-chevron-left"></i>
                 </a>
@@ -27,11 +27,10 @@
     <!-- Event Cards Grid -->
     <?php
     $events_query = new WP_Query(array(
-        'cat' => 8,
+        'cat' => 330,
         'posts_per_page' => 2,
         'orderby' => 'date',
         'order' => 'DESC',
-        'offset' => 2
     ));
     
     if ($events_query->have_posts()):
@@ -44,15 +43,12 @@
                 <div class="row g-0 align-items-stretch">
                     <!-- Event Image (Right Side) -->
                     <div class="col-md-5">
-                        <div class="ratio ratio-1x1">
+                        <div class="">
                             <?php if (has_post_thumbnail()): ?>
                             <img src="<?php the_post_thumbnail_url('medium'); ?>"
                                 alt="<?php the_title(); ?>"
                                 class="event-image">
-                            <?php else: ?>
-                            <img src="https://picsum.photos/188/268?random=1"
-                                alt="<?php the_title(); ?>"
-                                class="event-image">
+                          
                             <?php endif; ?>
                         </div>
                     </div>
@@ -63,7 +59,7 @@
                             <h3 class="event-title">
                                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                             </h3>
-                            <p class="event-lead"><?php echo wp_trim_words(get_the_excerpt(), 20, '...'); ?></p>
+                            <p class="event-lead"><?php echo wp_trim_words(get_the_excerpt(), 30, '...'); ?></p>
                         </div>
                         <div class="event-meta d-flex align-items-center flex-wrap gap-3 text-muted bg-body-secondary py-0 ps-0"
                             aria-label="تاریخ: <?php the_date('Y/m/d'); ?>، مکان: تهران، اندیشکده عصر پویا">

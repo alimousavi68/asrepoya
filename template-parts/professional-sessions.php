@@ -17,7 +17,7 @@
                     <h2 id="sessions-title" class="post-list-title fw-bold pe-4">نشست‌های تخصصی</h2>
                     <p class="post-list-subtitle pe-4 text-black-50">آخرین رویدادهای برگزار شده توسط مرکز</p>
                 </div>
-                <a href="<?php echo get_category_link(8); ?>" class="more-btn">
+                <a href="<?php echo get_category_link(329); ?>" class="more-btn">
                     <span>مشاهده بیشتر</span>
                     <i class="fas fa-chevron-left"></i>
                 </a>
@@ -31,7 +31,7 @@
 
                 <?php
                 $sessions_query = new WP_Query(array(
-                    'cat' => 8,
+                    'cat' => 329,
                     'posts_per_page' => 2,
                     'orderby' => 'date',
                     'order' => 'DESC'
@@ -43,6 +43,7 @@
                 <!-- Featured Post Content -->
                 <div class="featured-post-content ">
                     <h3 class="featured-post-title text-black">
+                        <span class="i8-bullet"><i class="fas fa-chevron-left"></i></span>
                         <a href="<?php the_permalink(); ?>" class="text-black"><?php the_title(); ?></a>
                     </h3>
 
@@ -73,25 +74,14 @@
                 <?php $sessions_query->the_post(); ?>
                 <div class="second-post">
                     <h4 class="second-post-title">
+                                            <span class="i8-bullet"><i class="fas fa-chevron-left"></i></span>
+
                         <a href="<?php the_permalink(); ?>" class="text-black"><?php the_title(); ?></a>
                     </h4>
                     <div class="second-post-meta">
                         <span class="post-category text-black-50">حوزه سیاسی</span>
                         <span class="meta-separator text-black-50">•</span>
                         <span class="post-event-date text-black-50">تاریخ برگزاری: <?php the_date('Y/m/d'); ?></span>
-                    </div>
-                </div>
-                <?php else: ?>
-                <!-- Second Post - Static Fallback -->
-                <div class="second-post">
-                    <h4 class="second-post-title">
-                        <a href="#" class="text-black">خط‌مشی‌گذاری کرونا و سیاست ورزی در کشکش نهادی؛
-                            چالش‌های تربیت سیاسی و کیفیت حکمرانی در ایران</a>
-                    </h4>
-                    <div class="second-post-meta">
-                        <span class="post-category text-black-50">حوزه سیاسی</span>
-                        <span class="meta-separator text-black-50">•</span>
-                        <span class="post-event-date text-black-50">تاریخ برگزاری: ۱۴۰۳/۰۸/۲۵</span>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -104,7 +94,7 @@
             <figure class="featured-post-image">
                  <?php
                 $sessions_query_2 = new WP_Query(array(
-                    'cat' => 8,
+                    'cat' => 329,
                     'posts_per_page' => 1,
                     'orderby' => 'date',
                     'order' => 'DESC'
@@ -117,10 +107,8 @@
                     <img src="<?php the_post_thumbnail_url('large'); ?>"
                     alt="<?php the_title(); ?>"
                     class="w-100 h-100">
-                <?php else: ?>
-                <img src="https://picsum.photos/720/560?random=1"
-                    alt="سلسله نشست‌های اقتصادی پیرامون ظرفیت‌های اقتصاد ایران در توسعه صادرات غیر نفتی کشور"
-                    class="w-100 h-100">
+               
+                
                 <?php endif;endif; ?>
             </figure>
         </div>

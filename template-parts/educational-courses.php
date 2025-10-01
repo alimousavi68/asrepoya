@@ -16,7 +16,7 @@
                 <h3 class="post-list-title fw-bold pe-4">دوره‌های آموزشی</h3>
                 <p class="post-list-subtitle text-black-50 pe-4">آخرین دوره‌های آموزشی و تخصصی</p>
             </div>
-            <a href="<?php echo get_category_link(8); ?>" class="more-btn">
+            <a href="<?php echo get_category_link(342); ?>" class="more-btn">
                 <span>مشاهده بیشتر</span>
                 <i class="fas fa-chevron-left"></i>
             </a>
@@ -30,7 +30,7 @@
         <?php
         // Query for courses posts from category 8
         $courses_query = new WP_Query(array(
-            'cat' => 8,
+            'cat' => 342,
             'posts_per_page' => 4,
             'orderby' => 'date',
             'order' => 'DESC'

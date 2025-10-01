@@ -279,6 +279,10 @@ class Asrepoya_Nav_Walker extends Walker_Nav_Menu {
         if ( $depth === 0 ) {
             $classes[] = 'nav-item';
             $classes[] = 'px-2';
+            // Add dropdown class for items with children to enable hover
+            if ( in_array( 'menu-item-has-children', $classes ) ) {
+                $classes[] = 'dropdown';
+            }
         }
         
         $class_names = join( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args ) );
@@ -305,8 +309,9 @@ class Asrepoya_Nav_Walker extends Walker_Nav_Menu {
                 $link_classes[] = 'dropdown-toggle';
                 $link_classes[] = 'd-flex';
                 $link_classes[] = 'align-items-center';
-                $attributes .= ' data-bs-toggle="dropdown"';
-                $attributes .= ' aria-expanded="false"';
+                // Remove Bootstrap click behavior to enable hover-only dropdown
+                // $attributes .= ' data-bs-toggle="dropdown"';
+                // $attributes .= ' aria-expanded="false"';
             }
         } else {
             // Submenu items
@@ -401,3 +406,26 @@ add_action('wp_update_nav_menu_item', function($menu_id, $menu_item_id) {
         update_post_meta($menu_item_id, '_menu_item_description', $_POST['menu-item-description'][$menu_item_id]);
     }
 }, 10, 2);
+
+
+//  add images sizes 
+// Add custom image sizes
+add_action( 'after_setup_theme', function() {
+    // Hero banner size
+    add_image_size( 'hero-banner', 850, 510, true );
+
+    // // Research card size
+    // add_image_size( 'research-card', 600, 400, true );
+
+    // // News thumbnail size
+    // add_image_size( 'news-thumb', 400, 250, true );
+
+    // // Team member portrait
+    // add_image_size( 'team-portrait', 300, 300, true );
+
+    // // Project gallery size
+    // add_image_size( 'project-gallery', 800, 600, true );
+
+    // // Publication cover size
+    // add_image_size( 'publication-cover', 250, 350, true );
+} );

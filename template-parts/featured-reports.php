@@ -7,7 +7,7 @@
 
 // Query for reports section - using category "تیتر یک" (ID: 8)
 $reports_query = new WP_Query(array(
-    'cat' => 8, // Category "تیتر یک"
+    'cat' => 328, // Category "تیتر یک"
     'posts_per_page' => 3, // Get 3 posts: 1 main + 2 sidebar
     'post_status' => 'publish',
     'orderby' => 'date',
@@ -21,7 +21,7 @@ if ($reports_query->have_posts()):
     $side_posts = array_slice($reports_posts, 1, 2); // Next 2 posts for sidebar
     
     // Get category link for "more" button
-    $category_link = get_category_link(8);
+    $category_link = get_category_link(328);
 ?>
 <section class="featured-posts-section container" aria-labelledby="featured-reports-title">
     <h2 id="featured-reports-title" class="visually-hidden">گزارش‌های تخصصی</h2>

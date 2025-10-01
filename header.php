@@ -28,12 +28,9 @@
     
     <!-- کتابخانه‌های خارجی -->
     <!-- Bootstrap CSS برای طراحی ریسپانسیو -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome برای آیکون‌ها -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <!-- فونت فارسی وزیرمتن -->
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/fontawesome-all.min.css">
     <!-- استایل‌های سفارشی پروژه -->
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/main.css" rel="stylesheet">
 </head>
@@ -64,9 +61,9 @@
 
             <!-- Search Section -->
             <div class="search-section d-flex align-items-center position-relative">
-                <input type="search" class="search-field form-control rounded-0" placeholder="جستجو..."
+                <input type="search" class="search-field rounded-0" placeholder="جستجو..."
                     aria-label="جستجو در سایت">
-                <i class="fas fa-search search-icon position-absolute end-0 me-2" aria-label="آیکون جستجو"></i>
+                <i class="fas fa-search search-icon position-absolute end-0 ms-3" aria-label="آیکون جستجو"></i>
             </div>
         </div>
 
