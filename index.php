@@ -43,9 +43,9 @@
                                             aria-label="اسلاید <?php echo $slide_index + 1; ?> از 3">
                                             
                                             <?php if (has_post_thumbnail()) : ?>
-                                                <?php the_post_thumbnail('hero-banner', ['class' => 'd-block w-100', 'alt' => get_the_title(), 'width' => 850, 'height' => 500]); ?>
-                                            <?php else : ?>
-                                                <img src="#" alt="<?php echo get_the_title(); ?>" class="d-block w-100" width="850" height="500">
+                                                <a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+                                                    <?php the_post_thumbnail('hero-banner', ['class' => 'd-block w-100', 'alt' => get_the_title(), 'width' => 850, 'height' => 500]); ?>
+                                                </a>
                                             <?php endif; ?>
                                             <div class="content-panel">
                                                 <div class="content-wrapper">
