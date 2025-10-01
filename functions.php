@@ -429,3 +429,504 @@ add_action( 'after_setup_theme', function() {
     // // Publication cover size
     // add_image_size( 'publication-cover', 250, 350, true );
 } );
+
+/**
+ * Custom Meta Box for Posts - i8 Post Details
+ * 
+ * This meta box provides dynamic fields based on post type selection
+ * All meta fields use i8_ prefix as requested
+ */
+
+// Add meta box
+add_action( 'add_meta_boxes', 'i8_add_post_details_meta_box' );
+
+function i8_add_post_details_meta_box() {
+    add_meta_box(
+        'i8_post_details',           // Meta box ID
+        'جزئیات پست',                // Title
+        'i8_post_details_callback',  // Callback function
+        'post',                      // Post type
+        'side',                      // Context (side for sidebar)
+        'high'                       // Priority (high for top position)
+    );
+}
+
+// Enqueue media scripts for admin
+add_action( 'admin_enqueue_scripts', 'i8_admin_enqueue_scripts' );
+
+function i8_admin_enqueue_scripts( $hook ) {
+    // Only load on post edit pages
+    if ( 'post.php' !== $hook && 'post-new.php' !== $hook ) {
+        return;
+    }
+    
+    // Enqueue WordPress media scripts
+    wp_enqueue_media();
+}
+
+// Meta box callback function
+function i8_post_details_callback( $post ) {
+    // Add nonce for security
+    wp_nonce_field( 'i8_post_details_nonce', 'i8_post_details_nonce_field' );
+    
+    // Get current values
+    $main_category = get_post_meta( $post->ID, 'i8_main_category', true );
+    $post_type = get_post_meta( $post->ID, 'i8_post_type', true );
+    
+    // Get all categories for dropdown
+    $categories = get_categories( array( 'hide_empty' => false ) );
+    
+    // Post type options
+    $post_type_options = array(
+        'simple' => 'پست ساده',
+        'report' => 'گزارش تخصصی',
+        'multimedia' => 'چندرسانه‌ای',
+        'session' => 'نشست تخصصی',
+        'event' => 'رویداد',
+        'publication' => 'انتشارات',
+        'course' => 'دوره آموزشی'
+    );
+    
+    ?>
+    <div id="i8-post-details-container">
+        <style>
+            #i8-post-details-container .field-group {
+                margin-bottom: 15px;
+            }
+            #i8-post-details-container label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            #i8-post-details-container select,
+            #i8-post-details-container input[type="text"],
+            #i8-post-details-container input[type="url"],
+            #i8-post-details-container input[type="date"],
+            #i8-post-details-container textarea {
+                width: 100%;
+                padding: 5px;
+                border: 1px solid #ddd;
+                border-radius: 3px;
+            }
+            #i8-post-details-container textarea {
+                height: 60px;
+                resize: vertical;
+            }
+            .conditional-fields {
+                display: none;
+                margin-top: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #eee;
+            }
+            .conditional-fields.active {
+                display: block;
+            }
+        </style>
+        
+        <!-- Required Fields -->
+        <div class="field-group">
+            <label for="i8_main_category">دسته‌بندی اصلی:</label>
+            <select name="i8_main_category" id="i8_main_category">
+                <option value="">انتخاب دسته‌بندی</option>
+                <?php foreach ( $categories as $category ) : ?>
+                    <option value="<?php echo esc_attr( $category->term_id ); ?>" 
+                            <?php selected( $main_category, $category->term_id ); ?>>
+                        <?php echo esc_html( $category->name ); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        
+        <div class="field-group">
+            <label for="i8_post_type">نوع پست:</label>
+            <select name="i8_post_type" id="i8_post_type">
+                <?php foreach ( $post_type_options as $value => $label ) : ?>
+                    <option value="<?php echo esc_attr( $value ); ?>" 
+                            <?php selected( $post_type, $value ); ?>>
+                        <?php echo esc_html( $label ); ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        
+        <!-- Conditional Fields for Report -->
+        <div id="fields-report" class="conditional-fields <?php echo ( $post_type === 'report' ) ? 'active' : ''; ?>">
+            <h4>فیلدهای گزارش تخصصی</h4>
+            <div class="field-group">
+                <label for="i8_report_pdf">آدرس فایل PDF:</label>
+                <input type="url" name="i8_report_pdf" id="i8_report_pdf" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_report_pdf', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_report_word">آدرس فایل Word:</label>
+                <input type="url" name="i8_report_word" id="i8_report_word" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_report_word', true ) ); ?>" />
+            </div>
+        </div>
+        
+        <!-- Conditional Fields for Multimedia -->
+        <div id="fields-multimedia" class="conditional-fields <?php echo ( $post_type === 'multimedia' ) ? 'active' : ''; ?>">
+            <h4>فیلدهای چندرسانه‌ای</h4>
+            <div class="field-group">
+                <label for="i8_media_duration">مدت زمان محتوا:</label>
+                <input type="text" name="i8_media_duration" id="i8_media_duration" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_media_duration', true ) ); ?>" 
+                       placeholder="مثال: 15:30" />
+            </div>
+            <div class="field-group">
+                <label for="i8_media_url">آدرس ویدیو:</label>
+                <input type="url" name="i8_media_url" id="i8_media_url" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_media_url', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_media_embed">کد امبد:</label>
+                <textarea name="i8_media_embed" id="i8_media_embed"><?php echo esc_textarea( get_post_meta( $post->ID, 'i8_media_embed', true ) ); ?></textarea>
+            </div>
+        </div>
+        
+        <!-- Conditional Fields for Session -->
+        <div id="fields-session" class="conditional-fields <?php echo ( $post_type === 'session' ) ? 'active' : ''; ?>">
+            <h4>فیلدهای نشست تخصصی</h4>
+            <div class="field-group">
+                <label for="i8_session_field">حوزه تخصصی:</label>
+                <input type="text" name="i8_session_field" id="i8_session_field" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_field', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_session_date">تاریخ برگزاری:</label>
+                <input type="date" name="i8_session_date" id="i8_session_date" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_date', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_session_host">نام میزبان:</label>
+                <input type="text" name="i8_session_host" id="i8_session_host" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_host', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_session_position">سمت میزبان:</label>
+                <input type="text" name="i8_session_position" id="i8_session_position" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_position', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_session_host_image">تصویر میزبان:</label>
+                <input type="hidden" name="i8_session_host_image" id="i8_session_host_image" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_host_image', true ) ); ?>" />
+                <div class="image-upload-container">
+                    <div class="image-preview" id="session_host_image_preview">
+                        <?php 
+                        $image_id = get_post_meta( $post->ID, 'i8_session_host_image', true );
+                        if ( $image_id ) {
+                            echo wp_get_attachment_image( $image_id, 'thumbnail' );
+                        }
+                        ?>
+                    </div>
+                    <button type="button" class="button" id="session_host_image_select">انتخاب تصویر</button>
+                    <button type="button" class="button" id="session_host_image_remove" style="<?php echo $image_id ? '' : 'display:none;'; ?>">حذف تصویر</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Conditional Fields for Event -->
+        <div id="fields-event" class="conditional-fields <?php echo ( $post_type === 'event' ) ? 'active' : ''; ?>">
+            <h4>فیلدهای رویداد</h4>
+            <div class="field-group">
+                <label for="i8_event_date_month">ماه برگزاری:</label>
+                <input type="text" name="i8_event_date_month" id="i8_event_date_month" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_event_date_month', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_event_date_day">روز برگزاری:</label>
+                <input type="text" name="i8_event_date_day" id="i8_event_date_day" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_event_date_day', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_event_location">مکان برگزاری:</label>
+                <input type="text" name="i8_event_location" id="i8_event_location" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_event_location', true ) ); ?>" />
+            </div>
+        </div>
+        
+        <!-- Conditional Fields for Publication -->
+        <div id="fields-publication" class="conditional-fields <?php echo ( $post_type === 'publication' ) ? 'active' : ''; ?>">
+            <h4>فیلدهای انتشارات</h4>
+            <div class="field-group">
+                <label for="i8_publication_author">نام نویسنده:</label>
+                <input type="text" name="i8_publication_author" id="i8_publication_author" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_publication_author', true ) ); ?>" />
+            </div>
+        </div>
+        
+        <!-- Conditional Fields for Course -->
+        <div id="fields-course" class="conditional-fields <?php echo ( $post_type === 'course' ) ? 'active' : ''; ?>">
+            <h4>فیلدهای دوره آموزشی</h4>
+            <div class="field-group">
+                <label for="i8_course_instructor">نام مدرس:</label>
+                <input type="text" name="i8_course_instructor" id="i8_course_instructor" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_course_instructor', true ) ); ?>" />
+            </div>
+            <div class="field-group">
+                <label for="i8_course_instructor_image">تصویر مدرس:</label>
+                <?php 
+                $instructor_image_id = get_post_meta( $post->ID, 'i8_course_instructor_image', true );
+                $instructor_image_url = $instructor_image_id ? wp_get_attachment_image_url( $instructor_image_id, 'thumbnail' ) : '';
+                ?>
+                <div class="instructor-image-upload">
+                    <input type="hidden" name="i8_course_instructor_image" id="i8_course_instructor_image" value="<?php echo esc_attr( $instructor_image_id ); ?>" />
+                    <div class="instructor-image-preview" style="margin-bottom: 10px;">
+                        <?php if ( $instructor_image_url ) : ?>
+                            <img src="<?php echo esc_url( $instructor_image_url ); ?>" style="max-width: 100px; height: auto; border-radius: 50%;" />
+                        <?php endif; ?>
+                    </div>
+                    <button type="button" class="button upload-instructor-image">انتخاب تصویر</button>
+                    <button type="button" class="button remove-instructor-image" style="<?php echo $instructor_image_url ? '' : 'display:none;'; ?>">حذف تصویر</button>
+                </div>
+            </div>
+            <div class="field-group">
+                <label for="i8_course_date">تاریخ برگزاری:</label>
+                <input type="date" name="i8_course_date" id="i8_course_date" 
+                       value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_course_date', true ) ); ?>" />
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        jQuery(document).ready(function($) {
+            // Handle post type change
+            $('#i8_post_type').on('change', function() {
+                var selectedType = $(this).val();
+                
+                // Hide all conditional fields
+                $('.conditional-fields').removeClass('active');
+                
+                // Show relevant fields based on selection
+                if (selectedType && selectedType !== 'simple') {
+                    $('#fields-' + selectedType).addClass('active');
+                }
+            });
+            
+            // WordPress Media Uploader for Instructor Image
+            var mediaUploader;
+            
+            $('.upload-instructor-image').on('click', function(e) {
+                e.preventDefault();
+                
+                // If the uploader object has already been created, reopen the dialog
+                if (mediaUploader) {
+                    mediaUploader.open();
+                    return;
+                }
+                
+                // Create the media uploader
+                mediaUploader = wp.media({
+                    title: 'انتخاب تصویر مدرس',
+                    button: {
+                        text: 'انتخاب تصویر'
+                    },
+                    multiple: false
+                });
+                
+                // When an image is selected, run a callback
+                mediaUploader.on('select', function() {
+                    var attachment = mediaUploader.state().get('selection').first().toJSON();
+                    $('#i8_course_instructor_image').val(attachment.id);
+                    $('.instructor-image-preview').html('<img src="' + attachment.sizes.thumbnail.url + '" style="max-width: 100px; height: auto; border-radius: 50%;" />');
+                    $('.remove-instructor-image').show();
+                });
+                
+                // Open the uploader dialog
+                mediaUploader.open();
+            });
+            
+            // Remove instructor image
+            $('.remove-instructor-image').on('click', function(e) {
+                e.preventDefault();
+                $('#i8_course_instructor_image').val('');
+                $('.instructor-image-preview').html('');
+                $(this).hide();
+            });
+            
+            // WordPress Media Uploader for Session Host Image
+            var sessionHostMediaUploader;
+            
+            $('#session_host_image_select').on('click', function(e) {
+                e.preventDefault();
+                
+                // If the uploader object has already been created, reopen the dialog
+                if (sessionHostMediaUploader) {
+                    sessionHostMediaUploader.open();
+                    return;
+                }
+                
+                // Create the media uploader
+                sessionHostMediaUploader = wp.media({
+                    title: 'انتخاب تصویر میزبان',
+                    button: {
+                        text: 'انتخاب تصویر'
+                    },
+                    multiple: false
+                });
+                
+                // When an image is selected, run a callback
+                sessionHostMediaUploader.on('select', function() {
+                    var attachment = sessionHostMediaUploader.state().get('selection').first().toJSON();
+                    $('#i8_session_host_image').val(attachment.id);
+                    $('#session_host_image_preview').html('<img src="' + attachment.sizes.thumbnail.url + '" style="max-width: 100px; height: auto; border-radius: 50%;" />');
+                    $('#session_host_image_remove').show();
+                });
+                
+                // Open the uploader dialog
+                sessionHostMediaUploader.open();
+            });
+            
+            // Remove session host image
+            $('#session_host_image_remove').on('click', function(e) {
+                e.preventDefault();
+                $('#i8_session_host_image').val('');
+                $('#session_host_image_preview').html('');
+                $(this).hide();
+            });
+        });
+    </script>
+     <?php
+ }
+
+// Save meta box data
+add_action( 'save_post', 'i8_save_post_details_meta' );
+
+function i8_save_post_details_meta( $post_id ) {
+    // Check if nonce is valid
+    if ( ! isset( $_POST['i8_post_details_nonce_field'] ) || 
+         ! wp_verify_nonce( $_POST['i8_post_details_nonce_field'], 'i8_post_details_nonce' ) ) {
+        return;
+    }
+
+    // Check if user has permission to edit post
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+
+    // Check if this is an autosave
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+
+    // Define all possible meta fields
+    $meta_fields = array(
+        // Required fields
+        'i8_main_category',
+        'i8_post_type',
+        
+        // Report fields
+        'i8_report_pdf',
+        'i8_report_word',
+        
+        // Multimedia fields
+        'i8_media_duration',
+        'i8_media_url',
+        'i8_media_embed',
+        
+        // Session fields
+        'i8_session_field',
+        'i8_session_date',
+        'i8_session_host',
+        'i8_session_position',
+        'i8_session_host_image',
+        
+        // Event fields
+        'i8_event_date_month',
+        'i8_event_date_day',
+        'i8_event_location',
+        
+        // Publication fields
+        'i8_publication_author',
+        
+        // Course fields
+        'i8_course_instructor',
+        'i8_course_instructor_image',
+        'i8_course_date'
+    );
+
+    // Save each field
+    foreach ( $meta_fields as $field ) {
+        if ( isset( $_POST[ $field ] ) ) {
+            $value = sanitize_text_field( $_POST[ $field ] );
+            
+            // Special handling for textarea fields
+            if ( $field === 'i8_media_embed' ) {
+                $value = sanitize_textarea_field( $_POST[ $field ] );
+            }
+            
+            // Special handling for URL fields
+            if ( in_array( $field, array( 'i8_report_pdf', 'i8_report_word', 'i8_media_url' ) ) ) {
+                $value = esc_url_raw( $_POST[ $field ] );
+            }
+            
+            update_post_meta( $post_id, $field, $value );
+        } else {
+            // Delete meta if field is empty
+            delete_post_meta( $post_id, $field );
+        }
+    }
+}
+
+/**
+ * Helper functions to retrieve meta data
+ */
+
+// Get main category for a post
+function i8_get_post_main_category( $post_id = null ) {
+    if ( ! $post_id ) {
+        $post_id = get_the_ID();
+    }
+    
+    $category_id = get_post_meta( $post_id, 'i8_main_category', true );
+    
+    if ( $category_id ) {
+        return get_category( $category_id );
+    }
+    
+    return false;
+}
+
+// Get post type for a post
+function i8_get_post_type( $post_id = null ) {
+    if ( ! $post_id ) {
+        $post_id = get_the_ID();
+    }
+    
+    $post_type = get_post_meta( $post_id, 'i8_post_type', true );
+    
+    // Return default if empty
+    return $post_type ? $post_type : 'simple';
+}
+
+// Get post type label
+function i8_get_post_type_label( $post_id = null ) {
+    $post_type = i8_get_post_type( $post_id );
+    
+    $labels = array(
+        'simple' => 'پست ساده',
+        'report' => 'گزارش تخصصی',
+        'multimedia' => 'چندرسانه‌ای',
+        'session' => 'نشست تخصصی',
+        'event' => 'رویداد',
+        'publication' => 'انتشارات',
+        'course' => 'دوره آموزشی'
+    );
+    
+    return isset( $labels[ $post_type ] ) ? $labels[ $post_type ] : $labels['simple'];
+}
+
+// Get specific meta field
+function i8_get_meta( $field, $post_id = null ) {
+    if ( ! $post_id ) {
+        $post_id = get_the_ID();
+    }
+    
+    return get_post_meta( $post_id, $field, true );
+}
+
+// Check if post has specific type
+function i8_is_post_type( $type, $post_id = null ) {
+    return i8_get_post_type( $post_id ) === $type;
+}

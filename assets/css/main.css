@@ -164,7 +164,7 @@
     --container-content: 1220px;
 
     /* ارتفاع‌های مشترک */
-    --header-height-desktop: 128px;
+    --header-height-desktop: 100px;
     --header-height-mobile: 67px;
     --button-height-sm: 32px;
     --button-height-md: 40px;
@@ -5028,6 +5028,14 @@ article:hover .small-post-title a::after {
     background-blend-mode: multiply;
 }
 
+.section-bg-2{
+    background-image: url('../images/header-bg.webp');
+    background-size: contain;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-blend-mode: color-burn;
+}
+
 .research-group-card:hover .icon-circle {
       color: var(--white);
     transform: scale(1.05);
@@ -5225,7 +5233,7 @@ article:hover .small-post-title a::after {
 
 /* Course Title */
 .course-title {
-    font-size: 20px;
+    font-size: 17px;
     line-height: 30px;
     font-weight: 700;
     color: #1B1B1C;
@@ -5301,7 +5309,7 @@ article:hover .small-post-title a::after {
     }
 
     .course-title {
-        font-size: 18px;
+        font-size: 16px;
         line-height: 28px;
     }
 
@@ -5346,7 +5354,7 @@ article:hover .small-post-title a::after {
     }
 
     .course-title {
-        font-size: 17px;
+        font-size: 16px;
         line-height: 26px;
     }
 
