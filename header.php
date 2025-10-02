@@ -41,7 +41,7 @@
 <body>
     <!-- ========== بخش هدر اصلی ========== -->
     <!-- شامل لوگو، منوی ناوبری، جستجو و دکمه‌های اجتماعی -->
-    <header class="main-header container-full p-0 align-content-center section-bg-2">
+    <header class="main-header container-full p-0 align-content-center">
         <!-- طرح‌بندی دسکتاپ - نمایش در صفحات بزرگ -->
         <div class="container-header d-none d-lg-flex justify-content-between align-items-center py-3">
             <!-- بخش لوگو و شناسه سازمان -->

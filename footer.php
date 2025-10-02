@@ -30,19 +30,35 @@
                         </div>
 
                         <!-- Social Media (Left) -->
-                        <div class="d-flex gap-4">
-                            <a href="#" class="social-icon" aria-label="تلگرام">
-                                <i class="fab fa-telegram"></i>
-                            </a>
-                            <a href="#" class="social-icon" aria-label="ایکس">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="social-icon" aria-label="واتساپ">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                            <a href="#" class="social-icon" aria-label="اینستاگرام">
-                                <i class="fab fa-instagram"></i>
-                            </a>
+                        <div class="d-flex gap-4 footer-social-media">
+                            <?php
+                            // Display social media icons from customizer
+                            for ( $i = 1; $i <= 10; $i++ ) {
+                                $icon_id = get_theme_mod( "asrepoya_social_icon_{$i}", '' );
+                                $link = get_theme_mod( "asrepoya_social_link_{$i}", '' );
+                                
+                                if ( $icon_id && $link ) {
+                                    $icon_path = get_attached_file( $icon_id );
+                                    if ( $icon_path && file_exists( $icon_path ) ) {
+                                        $svg_content = file_get_contents( $icon_path );
+                                        if ( $svg_content ) {
+                                            // Clean and prepare SVG content
+                                            $svg_content = preg_replace('/width="[^"]*"/', '', $svg_content);
+                                            $svg_content = preg_replace('/height="[^"]*"/', '', $svg_content);
+                                            $svg_content = str_replace('<svg', '<svg class="social-svg-icon" width="24" height="24"', $svg_content);
+                                            
+                                            printf(
+                                                '<a href="%s" target="_blank" rel="noopener" class="social-icon social-item social-item-%d" aria-label="شبکه اجتماعی %d">%s</a>',
+                                                esc_url( $link ),
+                                                $i,
+                                                $i,
+                                                $svg_content
+                                            );
+                                        }
+                                    }
+                                }
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -57,11 +73,11 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="footer-about">
                                 <h4 class="footer-title">درباره اندیشکده حکمرانی عصر پویا</h4>
-                                <p class="footer-description">
-                                    اندیشکده حکمرانی عصر پویا، نهادی مستقل با ماهیت غیرانتفاعی و غیرتجاری است که با
-                                    رویکردی تحلیلی، پژوهشی،تحلیلی است که با رویکردی نقادانه به تحلیل سیاست‌های اقتصادی،
-                                    نهادهای بین‌المللی، ساختارهای قدرت و تحولات اقتصادی-اجتماعی در ایران و جهان
-                                    می‌پردازد.
+                                <p class="footer-description footer-about-us">
+                                    <?php 
+                                    $about_us = get_theme_mod( 'asrepoya_about_us', 'اندیشکده حکمرانی عصر پویا، نهادی مستقل با ماهیت غیرانتفاعی و غیرتجاری است که با رویکردی تحلیلی، پژوهشی،تحلیلی است که با رویکردی نقادانه به تحلیل سیاست‌های اقتصادی، نهادهای بین‌المللی، ساختارهای قدرت و تحولات اقتصادی-اجتماعی در ایران و جهان می‌پردازد.' );
+                                    echo esc_html( $about_us );
+                                    ?>
                                 </p>
                             </div>
                         </div>
@@ -73,20 +89,38 @@
                                     <i class="fas fa-phone footer-icon"></i>
                                     اطلاعات تماس
                                 </h4>
+                                
+                                <?php
+                                // Display phone numbers
+                                $phones = array();
+                                for ( $i = 1; $i <= 4; $i++ ) {
+                                    $phone = get_theme_mod( "asrepoya_phone_{$i}", '' );
+                                    if ( $phone ) {
+                                        $phones[] = $phone;
+                                    }
+                                }
+                                
+                                if ( !empty( $phones ) ) : ?>
                                 <div class="contact-item">
                                     <i class="fas fa-phone contact-icon"></i>
                                     <div class="contact-text">
-                                        <div>0901-0123345</div>
-                                        <div>0901-0123345</div>
+                                        <?php foreach ( $phones as $index => $phone ) : ?>
+                                            <div class="footer-phone-<?php echo $index + 1; ?>"><?php echo esc_html( $phone ); ?></div>
+                                        <?php endforeach; ?>
                                     </div>
                                 </div>
+                                <?php endif; ?>
+                                
+                                <?php 
+                                $email = get_theme_mod( 'asrepoya_email', '' );
+                                if ( $email ) : ?>
                                 <div class="contact-item">
                                     <i class="fas fa-envelope contact-icon"></i>
                                     <div class="contact-text">
-                                        <a href="mailto:info@examplemail.com"
-                                            class="contact-email">info@examplemail.com</a>
+                                        <a href="mailto:<?php echo esc_attr( $email ); ?>" class="contact-email footer-email"><?php echo esc_html( $email ); ?></a>
                                     </div>
                                 </div>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -98,9 +132,21 @@
                                     آدرس
                                 </h4>
                                 <div class="address-content">
-                                    <p class="address-text">
-                                        خیابان بهشتی، پلاک 259، ساختمان پِیسا، طبقه دوم اندیشکده حکمرانی عصر پویا
-                                    </p>
+                                    <?php
+                                    for ( $i = 1; $i <= 2; $i++ ) {
+                                        $address = get_theme_mod( "asrepoya_address_{$i}", '' );
+                                        if ( $address ) {
+                                            echo '<p class="address-text footer-address-' . $i . '">' . esc_html( $address ) . '</p>';
+                                        }
+                                    }
+                                    
+                                    // Default address if none set
+                                    $address1 = get_theme_mod( 'asrepoya_address_1', '' );
+                                    $address2 = get_theme_mod( 'asrepoya_address_2', '' );
+                                    if ( empty( $address1 ) && empty( $address2 ) ) {
+                                        echo '<p class="address-text">خیابان بهشتی، پلاک 259، ساختمان پِیسا، طبقه دوم اندیشکده حکمرانی عصر پویا</p>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -115,7 +161,7 @@
                     <div class="d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3">
                         <!-- Copyright (Left) -->
                         <div class="footer-copyright text-center text-lg-end">
-                            <span><i class="fa fa-copyright" aria-hidden="true"></i> کلیه حقوق متعلق به اندیشکده حکمرانی عصر پویا می‌باشد</span>
+                            <span><i class="fa fa-copyright" aria-hidden="true"></i> <?php echo esc_html( get_theme_mod( 'asrepoya_copyright_text', 'کلیه حقوق متعلق به اندیشکده حکمرانی عصر پویا می‌باشد' ) ); ?></span>
                         </div>
 
                         <!-- Designer Link (Right) -->

@@ -44,7 +44,16 @@
                                                             ?>
                         <div class="carousel-inner">
                             <?php $first_item = true;
-                                                                while ($publications_query->have_posts()): $publications_query->the_post(); ?>
+                                                                while ($publications_query->have_posts()): $publications_query->the_post(); 
+                                                                
+                                                                // Get current post ID
+                                                                $post_id = get_the_ID();
+                                                                
+                                                                // Get i8 publication meta data
+                                                                $publication_author = i8_get_meta('i8_publication_author', $post_id);
+                                                                $publication_author_image = i8_get_meta('i8_publication_author_image', $post_id);
+                                                                $is_publication = i8_is_post_type('publication', $post_id);
+                                                                ?>
                                 <!-- Slide -->
                                 <div class="carousel-item <?php echo $first_item ? 'active' : ''; ?>">
                                     <div class="row g-4 align-items-center">
@@ -63,15 +72,29 @@
                                                 <h3 class="book-title">
                                                     <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                                                 </h3>
+                                                
+                                                <?php if ($is_publication && !empty($publication_author)) : 
+                                                    // Get author image URL
+                                                    $author_image_url = '';
+                                                    if (!empty($publication_author_image)) {
+                                                        $author_image_url = wp_get_attachment_image_url($publication_author_image, 'thumbnail');
+                                                    }
+                                                    // Fallback to placeholder if no image
+                                                    if (empty($author_image_url)) {
+                                                        $author_image_url = "https://picsum.photos/20/20?random=" . $post_id;
+                                                    }
+                                                ?>
+                                                <!-- Author Block -->
                                                 <div class="book-author d-flex flex-row gap-2">
-                                                    <img src="https://picsum.photos/20/20?random=1"
-                                                        alt="دکتر فرشاد رحمانی" class="author-avatar rounded-circle">
-                                                    <div
-                                                        class="author-info d-flex flex-column gap-2 align-items-lg-start">
+                                                    <img src="<?php echo esc_url($author_image_url); ?>"
+                                                        alt="<?php echo esc_attr($publication_author); ?>" class="author-avatar rounded-circle">
+                                                    <div class="author-info d-flex flex-column gap-2 align-items-lg-start">
                                                         <span class="author-label">نویسنده:</span>
-                                                        <span class="author-name">دکتر فرشاد رحمانی</span>
+                                                        <span class="author-name"><?php echo esc_html($publication_author); ?></span>
                                                     </div>
                                                 </div>
+                                                <?php endif; ?>
+                                                
                                                 <p class="book-lead">
                                                     <?php echo wp_trim_words(get_the_excerpt(), 30, '...'); ?>
                                                 </p>

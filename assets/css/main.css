@@ -4615,6 +4615,25 @@ article:hover .small-post-title a::after {
     outline-offset: 2px;
 }
 
+/* SVG Social Media Icons */
+.social-svg-icon {
+    fill: currentColor;
+    transition: all 0.3s ease;
+}
+
+.social-icon .social-svg-icon {
+    fill: rgba(255, 255, 255, 0.85);
+}
+
+.social-icon:hover .social-svg-icon {
+    fill: #6CA55A;
+    transform: scale(1.1);
+}
+
+.social-icon:focus .social-svg-icon {
+    fill: #6CA55A;
+}
+
 /* Footer Dividers */
 .footer-divider {
     height: 1px;

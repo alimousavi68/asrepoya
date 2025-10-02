@@ -168,6 +168,9 @@ function asrepoya_scripts() {
     
     // Theme main stylesheet.
     wp_enqueue_style( 'asrepoya-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0' );
+    
+    // Social media styles.
+    wp_enqueue_style( 'asrepoya-social-media', get_template_directory_uri() . '/assets/css/social-media.css', array(), '1.0.0' );
 
     // Theme script.
     wp_enqueue_script( 'asrepoya-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true );
@@ -654,6 +657,21 @@ function i8_post_details_callback( $post ) {
                 <input type="text" name="i8_publication_author" id="i8_publication_author" 
                        value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_publication_author', true ) ); ?>" />
             </div>
+            <div class="field-group">
+                <label for="i8_publication_author_image">تصویر نویسنده:</label>
+                <?php 
+                $author_image_id = get_post_meta( $post->ID, 'i8_publication_author_image', true );
+                $author_image_url = $author_image_id ? wp_get_attachment_image_url( $author_image_id, 'thumbnail' ) : '';
+                ?>
+                <input type="hidden" name="i8_publication_author_image" id="i8_publication_author_image" value="<?php echo esc_attr( $author_image_id ); ?>" />
+                <div class="image-upload-container">
+                    <div class="image-preview" id="publication_author_image_preview" style="<?php echo $author_image_url ? '' : 'display: none;'; ?>">
+                        <img src="<?php echo esc_url( $author_image_url ); ?>" style="max-width: 100px; height: auto;" />
+                    </div>
+                    <button type="button" class="button" id="upload_publication_author_image_button">انتخاب تصویر</button>
+                    <button type="button" class="button" id="remove_publication_author_image_button" style="<?php echo $author_image_url ? '' : 'display: none;'; ?>">حذف تصویر</button>
+                </div>
+            </div>
         </div>
         
         <!-- Conditional Fields for Course -->
@@ -785,6 +803,47 @@ function i8_post_details_callback( $post ) {
                 $('#session_host_image_preview').html('');
                 $(this).hide();
             });
+            
+            // WordPress Media Uploader for Publication Author Image
+            var publicationAuthorMediaUploader;
+            
+            $('#upload_publication_author_image_button').on('click', function(e) {
+                e.preventDefault();
+                
+                // If the uploader object has already been created, reopen the dialog
+                if (publicationAuthorMediaUploader) {
+                    publicationAuthorMediaUploader.open();
+                    return;
+                }
+                
+                // Create the media uploader
+                publicationAuthorMediaUploader = wp.media({
+                    title: 'انتخاب تصویر نویسنده',
+                    button: {
+                        text: 'انتخاب تصویر'
+                    },
+                    multiple: false
+                });
+                
+                // When an image is selected, run a callback
+                publicationAuthorMediaUploader.on('select', function() {
+                    var attachment = publicationAuthorMediaUploader.state().get('selection').first().toJSON();
+                    $('#i8_publication_author_image').val(attachment.id);
+                    $('#publication_author_image_preview').html('<img src="' + attachment.sizes.thumbnail.url + '" style="max-width: 100px; height: auto;" />').show();
+                    $('#remove_publication_author_image_button').show();
+                });
+                
+                // Open the uploader dialog
+                publicationAuthorMediaUploader.open();
+            });
+            
+            // Remove publication author image
+            $('#remove_publication_author_image_button').on('click', function(e) {
+                e.preventDefault();
+                $('#i8_publication_author_image').val('');
+                $('#publication_author_image_preview').html('').hide();
+                $(this).hide();
+            });
         });
     </script>
      <?php
@@ -839,6 +898,7 @@ function i8_save_post_details_meta( $post_id ) {
         
         // Publication fields
         'i8_publication_author',
+        'i8_publication_author_image',
         
         // Course fields
         'i8_course_instructor',
