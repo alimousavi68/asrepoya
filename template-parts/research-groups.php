@@ -34,7 +34,7 @@
                         $icon = get_post_meta($item->ID, '_menu_item_icon', true);
                         $description = get_post_meta($item->ID, '_menu_item_description', true);
                         ?>
-                        <div class="col" role="listitem">
+                        <div class="col-6 col-md-auto px-2" role="listitem">
                             <article class="research-group-card" aria-label="گروه پژوهشی: <?php echo esc_attr($item->title); ?>">
                                 <div class="icon-circle">
                                     <?php echo $icon ? $icon : '<i class="fas fa-folder"></i>'; ?>

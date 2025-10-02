@@ -17,7 +17,7 @@
             <div class="container">
                 <!-- Logo and Social Media Row -->
                 <div class="social-row py-4">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex flex-column flex-md-row gap-4  justify-content-between align-items-center">
                         <!-- Logo (Right) -->
                         <div class="footer-logo-section">
                             <a href="<?php echo home_url(); ?>">
@@ -127,27 +127,25 @@
                         <!-- Address Column (Left) -->
                         <div class="col-lg-4 col-md-12 footer-address-col">
                             <div class="footer-address">
-                                <h4 class="footer-title">
-                                    <i class="fas fa-map-marker-alt footer-icon"></i>
-                                    آدرس
-                                </h4>
-                                <div class="address-content">
-                                    <?php
-                                    for ( $i = 1; $i <= 2; $i++ ) {
-                                        $address = get_theme_mod( "asrepoya_address_{$i}", '' );
-                                        if ( $address ) {
-                                            echo '<p class="address-text footer-address-' . $i . '">' . esc_html( $address ) . '</p>';
+                                <?php
+                                $address1 = get_theme_mod( 'asrepoya_address_1', '' );
+                                $address2 = get_theme_mod( 'asrepoya_address_2', '' );
+                                if ( ! empty( $address1 ) || ! empty( $address2 ) ) : ?>
+                                    <h4 class="footer-title">
+                                        <i class="fas fa-map-marker-alt footer-icon"></i>
+                                        آدرس
+                                    </h4>
+                                    <div class="address-content">
+                                        <?php
+                                        for ( $i = 1; $i <= 2; $i++ ) {
+                                            $address = get_theme_mod( "asrepoya_address_{$i}", '' );
+                                            if ( $address ) {
+                                                echo '<p class="address-text footer-address-' . $i . '">' . esc_html( $address ) . '</p>';
+                                            }
                                         }
-                                    }
-                                    
-                                    // Default address if none set
-                                    $address1 = get_theme_mod( 'asrepoya_address_1', '' );
-                                    $address2 = get_theme_mod( 'asrepoya_address_2', '' );
-                                    if ( empty( $address1 ) && empty( $address2 ) ) {
-                                        echo '<p class="address-text">خیابان بهشتی، پلاک 259، ساختمان پِیسا، طبقه دوم اندیشکده حکمرانی عصر پویا</p>';
-                                    }
-                                    ?>
-                                </div>
+                                        ?>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -166,7 +164,7 @@
 
                         <!-- Designer Link (Right) -->
                         <div class="footer-designer">
-                            <a href="#" class="designer-link">طراحی و توسعه: تیم فنی اندیشکده</a>
+                            <a href="http://ihasht.ir/" target="_blank" class="designer-link">طراحی و توسعه: هشت بهشت</a>
                         </div>
                     </div>
                 </div>

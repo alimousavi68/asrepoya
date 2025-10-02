@@ -140,11 +140,11 @@ function asrepoya_add_contact_settings( $wp_customize ) {
     ) );
     $wp_customize->add_control( 'asrepoya_about_us', array(
         'label'       => __( 'درباره ما', 'asrepoya' ),
-        'description' => __( 'حداکثر 200 کاراکتر', 'asrepoya' ),
+        'description' => __( 'حداکثر 400 کاراکتر', 'asrepoya' ),
         'section'     => 'asrepoya_contact_section',
         'type'        => 'textarea',
         'input_attrs' => array(
-            'maxlength' => 200,
+            'maxlength' => 400,
             'rows'      => 4,
         ),
     ) );

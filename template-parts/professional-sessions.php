@@ -11,7 +11,7 @@
     <div class="row g-0 align-items-start">
 
         <!-- Section Header -->
-        <header class="post-list-header ">
+        <header class="post-list-header order-1 order-md-1">
             <div class="header-content">
                 <div class="header-text">
                     <h2 id="sessions-title" class="post-list-title fw-bold pe-4">نشست‌های تخصصی</h2>
@@ -25,7 +25,7 @@
         </header>
 
         <!-- Session Content Column -->
-        <div class="col-lg-6 bg-dark-900 text-white post-section-content pe-5">
+        <div class="col-lg-6 bg-dark-900 text-white post-section-content pe-5 order-3 order-lg-2">
             <div class="content-inner">
 
 
@@ -186,7 +186,7 @@
         </div>
 
         <!-- Session Image Column -->
-        <div class="col-lg-6 p-0">
+        <div class="col-lg-6 p-0 order-2 order-lg-3">
             <figure class="featured-post-image">
                  <?php
                 $sessions_query_2 = new WP_Query(array(
