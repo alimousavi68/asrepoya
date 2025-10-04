@@ -173,9 +173,10 @@ get_header(); ?>
         </div>
 
         <!-- Sidebar -->
-        <div class="col-lg-4">
-            <?php require_once 'sidebar.php'; ?>
-            </aside>
+        <div class="col-lg-4 pt-4 ">
+            <div class="position-sticky" style="top:10px;">
+                <?php require_once 'sidebar.php'; ?>
+            </div>
         </div>
     </div>
 </main>
