@@ -17,7 +17,7 @@ if ($category_id > 0) {
         <div class="header-content">
             <div class="header-text">
                 <h3 class="post-list-title fw-bold pe-4"><?php echo esc_html($title); ?></h3>
-                <p class="post-list-subtitle pe-4 text-black"><?php echo esc_html($subtitle); ?></p>
+                <p class="post-list-subtitle pe-4"><?php echo esc_html($subtitle); ?></p>
             </div>
             <?php if ($show_more_link && $category_obj): ?>
                 <a href="<?php echo esc_url(get_category_link($category_id)); ?>" class="more-btn">
