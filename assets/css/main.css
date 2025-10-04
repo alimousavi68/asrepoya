@@ -1032,7 +1032,7 @@ a:hover {
     font-weight: 700;
     margin-bottom: 8px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1044,7 +1044,7 @@ a:hover {
     font-weight: 400;
     margin-bottom: 0;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1340,13 +1340,13 @@ a:hover {
 }
 
 .post-title {
-    font-size: 18px;
-    line-height: 26px;
-    font-weight: 700;
+    font-size: 17px;
+    line-height: 170%;
+    font-weight: 400;
     color: #1B1B1C;
     margin-bottom: 12px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -3235,13 +3235,11 @@ article:hover .small-post-title a::after {
 }
 
 .article-summary {
-    background: var(--gray-100);
+    background: var(--gray-200) !important;
     padding: 1.5rem;
-    border-radius: 8px;
     font-size: 1.1rem;
     line-height: 1.6;
     color: var(--text-secondary);
-    border-left: 4px solid var(--secondary-color);
 }
 
 /* تصویر شاخص */
@@ -4390,6 +4388,8 @@ article:hover .small-post-title a::after {
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--gray-200);
 }
+
+
 
 /* ویجت جستجو */
 .search-widget .input-group .form-control {
@@ -5877,4 +5877,13 @@ article:hover .small-post-title a::after {
     .meta-separator {
         display: none;
     }
+}
+
+
+.post-thumbnail a img {
+    width: 150px !important;
+    height: 100px !important;
+    object-fit: cover !important;
+    box-shadow: 1px 1px 2px 0px var(--gray-400) !important;
+    border: 1px solid var(--secondary-color);
 }

@@ -1,0 +1,241 @@
+/* Asrepoya Posts Widget Styles */
+
+.asrepoya-posts-widget {
+    margin-bottom: 2rem;
+}
+
+/* Widget Header Styles */
+.asrepoya-posts-widget .widget-header {
+    margin-bottom: 1.5rem;
+}
+
+.asrepoya-posts-widget .widget-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.asrepoya-posts-widget .widget-subtitle {
+    font-size: 0.875rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.asrepoya-posts-widget .widget-more-link {
+    font-size: 0.875rem;
+    color: #007cba;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.asrepoya-posts-widget .widget-more-link:hover {
+    text-decoration: underline;
+}
+
+/* Style 1 - Numbered List (like single.php) */
+.asrepoya-posts-widget.style-1 .posts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.asrepoya-posts-widget.style-1 .post-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.asrepoya-posts-widget.style-1 .post-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.asrepoya-posts-widget.style-1 .post-number {
+    background: #007cba;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.75rem;
+    flex-shrink: 0;
+}
+
+.asrepoya-posts-widget.style-1 .post-content {
+    flex: 1;
+}
+
+.asrepoya-posts-widget.style-1 .post-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.asrepoya-posts-widget.style-1 .post-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.asrepoya-posts-widget.style-1 .post-title a:hover {
+    color: #007cba;
+}
+
+.asrepoya-posts-widget.style-1 .post-meta {
+    font-size: 0.75rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+/* Style 2 - Image on Right */
+.asrepoya-posts-widget.style-2 .posts-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+.asrepoya-posts-widget.style-2 .post-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.asrepoya-posts-widget.style-2 .post-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.asrepoya-posts-widget.style-2 .post-content {
+    flex: 1;
+    margin-left: 0.75rem;
+}
+
+.asrepoya-posts-widget.style-2 .post-thumbnail {
+    width: 75px;
+    height: 75px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    order: 2;
+}
+
+.asrepoya-posts-widget.style-2 .post-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.asrepoya-posts-widget.style-2 .post-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 0.25rem 0;
+}
+
+.asrepoya-posts-widget.style-2 .post-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.asrepoya-posts-widget.style-2 .post-title a:hover {
+    color: #007cba;
+}
+
+.asrepoya-posts-widget.style-2 .post-meta {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+/* Style 3 - Image on Top */
+.asrepoya-posts-widget.style-3 .posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.asrepoya-posts-widget.style-3 .post-item {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.asrepoya-posts-widget.style-3 .post-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.asrepoya-posts-widget.style-3 .post-thumbnail {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+}
+
+.asrepoya-posts-widget.style-3 .post-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.asrepoya-posts-widget.style-3 .post-item:hover .post-thumbnail img {
+    transform: scale(1.05);
+}
+
+.asrepoya-posts-widget.style-3 .post-content {
+    padding: 1rem;
+}
+
+.asrepoya-posts-widget.style-3 .post-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin: 0 0 0.5rem 0;
+}
+
+.asrepoya-posts-widget.style-3 .post-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.asrepoya-posts-widget.style-3 .post-title a:hover {
+    color: #007cba;
+}
+
+.asrepoya-posts-widget.style-3 .post-meta {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .asrepoya-posts-widget.style-3 .posts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .asrepoya-posts-widget.style-2 .post-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .asrepoya-posts-widget.style-2 .post-thumbnail {
+        order: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .asrepoya-posts-widget.style-2 .post-content {
+        margin-left: 0;
+    }
+}

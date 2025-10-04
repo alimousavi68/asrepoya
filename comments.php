@@ -76,7 +76,6 @@ if ( post_password_required() ) {
 
         endif; // Check for have_comments().
         ?>
-        </div>
 
     <?php
     // Comment form

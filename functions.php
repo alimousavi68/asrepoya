@@ -990,3 +990,8 @@ function i8_get_meta( $field, $post_id = null ) {
 function i8_is_post_type( $type, $post_id = null ) {
     return i8_get_post_type( $post_id ) === $type;
 }
+
+/**
+ * Load custom widgets
+ */
+require_once get_template_directory() . '/widgets/widget-init.php';
