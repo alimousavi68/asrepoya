@@ -110,6 +110,7 @@
     margin-bottom: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #eee;
+    flex-direction: row-reverse;
 }
 
 .asrepoya-posts-widget.style-2 .post-item:last-child {
@@ -126,7 +127,6 @@
 .asrepoya-posts-widget.style-2 .post-thumbnail {
     width: 75px;
     height: 75px;
-    border-radius: 8px;
     overflow: hidden;
     flex-shrink: 0;
     order: 2;
@@ -379,7 +379,7 @@
     }
     
     .asrepoya-posts-widget.style-2 .post-item {
-        flex-direction: column;
+        padding: 10px;
         text-align: center;
     }
     
@@ -400,8 +400,8 @@
     }
     
     .asrepoya-events-widget .event-image {
-        width: 50px;
-        height: 50px;
+        /* width: 50px;
+        height: 50px; */
     }
     
     .asrepoya-events-widget .event-title {
