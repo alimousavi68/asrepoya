@@ -267,8 +267,7 @@
 
 .asrepoya-events-widget .event-card {
     background: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
+    border: 1px solid #e0e0e0 ; 
     overflow: hidden;
     transition: box-shadow 0.3s ease;
     height: 100%;
@@ -336,17 +335,7 @@
 .asrepoya-events-widget .event-meta {
     background: #f8f9fa;
     border-top: 1px solid #e9ecef;
-    margin: 0 -20px -20px -20px;
-    padding: 15px 20px;
-}
 
-.asrepoya-events-widget .event-date {
-    background: linear-gradient(135deg, #007cba 0%, #005a87 100%);
-    color: white;
-    border-radius: 6px;
-    padding: 10px 15px;
-    text-align: center;
-    min-width: 70px;
 }
 
 .asrepoya-events-widget .event-date .fw-bold {
