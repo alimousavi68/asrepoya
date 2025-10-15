@@ -227,13 +227,6 @@
     overflow: hidden;
 }
 
-/* Header Styles */
-.asrepoya-events-widget .post-list-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 15px 20px;
-    color: white;
-}
-
 .asrepoya-events-widget .post-list-header .header-content {
     display: flex;
     justify-content: space-between;
@@ -243,7 +236,7 @@
 .asrepoya-events-widget .post-list-title {
     margin: 0;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 600; 
 }
 
 .asrepoya-events-widget .post-list-subtitle {
