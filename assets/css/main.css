@@ -1396,8 +1396,9 @@ a:hover {
 .multimedia-section {
     padding: 48px 0;
     background: var(--primary-color);
+    overflow: hidden;
 
-}
+} 
 
 /* Multimedia Header */
 .multimedia-header {

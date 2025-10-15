@@ -7,7 +7,7 @@
 ?>
 
 <!-- Multimedia Section -->
-<section class="container-fluid multimedia-section py-5 section-bg" aria-labelledby="multimedia-title">
+<section class="container-fluid multimedia-section py-5 section-bg overflow-hidden" aria-labelledby="multimedia-title">
     <div class="container-content">
         <h2 id="multimedia-title" class="visually-hidden">بخش چندرسانه‌ای</h2>
         <!-- Section Header -->
