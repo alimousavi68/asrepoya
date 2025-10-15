@@ -166,11 +166,8 @@ function asrepoya_scripts() {
     // Theme stylesheet.
     wp_enqueue_style( 'asrepoya-style', get_stylesheet_uri(), array(), '1.0.0' );
     
-    // Theme main stylesheet.
+    // Theme main stylesheet (includes social media styles).
     wp_enqueue_style( 'asrepoya-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0' );
-    
-    // Social media styles.
-    wp_enqueue_style( 'asrepoya-social-media', get_template_directory_uri() . '/assets/css/social-media.css', array(), '1.0.0' );
 
     // Theme script.
     wp_enqueue_script( 'asrepoya-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true );
@@ -201,6 +198,11 @@ require get_template_directory() . '/inc/template-functions.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Schema Rich Data implementation.
+ */
+require get_template_directory() . '/inc/schema-markup.php';
 
 /**
  * Add SVG support to WordPress

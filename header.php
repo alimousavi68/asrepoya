@@ -22,7 +22,34 @@
     <!-- تنظیمات پایه و متاداده -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> اندیشکده حکمرانی</title>
+    <!-- Title tag will be handled by WordPress and RankMath -->
+    
+    <!-- SEO Meta Tags for Governance Think Tank -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="language" content="fa">
+    <meta name="author" content="اندیشکده حکمرانی عصر پویا">
+    <meta name="publisher" content="اندیشکده حکمرانی عصر پویا">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:locale" content="fa_IR">
+    <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
+    <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@asrepoya">
+    
+    <!-- Additional Meta Tags for News/Think Tank -->
+    <meta name="news_keywords" content="حکمرانی, سیاست, حکمرانی,اقتصاد, اندیشکده, تحلیل, گزارش">
+    <meta name="article:publisher" content="اندیشکده حکمرانی عصر پویا">
+    
+    <?php if (is_single() && get_post_type() == 'post'): ?>
+    <!-- Article specific meta tags -->
+    <meta property="article:published_time" content="<?php echo get_the_date('c'); ?>">
+    <meta property="article:modified_time" content="<?php echo get_the_modified_date('c'); ?>">
+    <meta property="article:author" content="<?php echo get_the_author(); ?>">
+    <meta property="article:section" content="<?php echo get_the_category()[0]->name ?? 'اخبار'; ?>">
+    <?php endif; ?>
 
 
     
@@ -32,7 +59,9 @@
     <!-- Font Awesome برای آیکون‌ها -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/fontawesome-all.min.css">
     <!-- استایل‌های سفارشی پروژه -->
-    <link href="<?php echo get_template_directory_uri(); ?>/assets/css/main.css" rel="stylesheet">
+    <link href="<?php echo get_template_directory_uri(); ?>/assets/css/main.min.css" rel="stylesheet">
+    
+    <?php wp_head(); ?>
 </head>
 <?php
 // get_header();
