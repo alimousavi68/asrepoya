@@ -58,6 +58,29 @@
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome برای آیکون‌ها -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/fontawesome-all.min.css">
+    <style>
+    @font-face {
+        font-family: "Font Awesome 6 Free";
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url("<?php echo get_template_directory_uri(); ?>/assets/css/webfonts/fa-regular-400.woff2") format("woff2");
+    }
+    @font-face {
+        font-family: "Font Awesome 6 Free";
+        font-style: normal;
+        font-weight: 900;
+        font-display: block;
+        src: url("<?php echo get_template_directory_uri(); ?>/assets/css/webfonts/fa-solid-900.woff2") format("woff2");
+    }
+    @font-face {
+        font-family: "Font Awesome 6 Brands";
+        font-style: normal;
+        font-weight: 400;
+        font-display: block;
+        src: url("<?php echo get_template_directory_uri(); ?>/assets/css/webfonts/fa-brands-400.woff2") format("woff2");
+    }
+    </style>
     <!-- استایل‌های سفارشی پروژه -->
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/main.min.css" rel="stylesheet">
     

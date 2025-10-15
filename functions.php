@@ -169,8 +169,11 @@ function asrepoya_scripts() {
     // Theme main stylesheet (includes social media styles).
     wp_enqueue_style( 'asrepoya-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0' );
 
+    // Bootstrap JavaScript
+    wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array('jquery'), '5.3.0', true );
+    
     // Theme script.
-    wp_enqueue_script( 'asrepoya-main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0.0', true );
+    wp_enqueue_script( 'asrepoya-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery', 'bootstrap'), '1.0.0', true );
 
     // Comment reply script.
     if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

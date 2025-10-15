@@ -233,8 +233,7 @@
         });
     </script>
 
-    <!-- Bootstrap JavaScript -->
-    <script src="<?php echo get_template_directory_uri(); ?>/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap JavaScript is now loaded via wp_enqueue_script in functions.php -->
     <script>
         // Mobile menu toggle
         const mobileHamburger = document.querySelector('.mobile-hamburger');
