@@ -29,7 +29,7 @@ if ($reports_query->have_posts()):
     <header class="post-list-header">
         <div class="header-content">
             <div class="header-text">
-                <h3 class="post-list-title fw-bold pe-4">گزارش‌های تخصصی</h3>
+                <h3 class="post-list-title fw-bold pe-5 pe-lg-4">گزارش‌های تخصصی</h3>
                 <p class="post-list-subtitle pe-4">آخرین گزارش‌های کارشناسی منتشر شده در اینجا پیدا کنید</p>
             </div>
             <a href="<?php echo esc_url($category_link); ?>" class="more-btn">

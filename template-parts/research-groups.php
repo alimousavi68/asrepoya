@@ -14,7 +14,7 @@
         <header class="post-list-header">
             <div class="header-content">
                 <div class="header-text">
-                    <h3 class="post-list-title fw-bold pe-4">گروه های پژوهشی</h3>
+                    <h3 class="post-list-title fw-bold pe-5 pe-lg-4">گروه های پژوهشی</h3>
                     <p class="post-list-subtitle text-black-50 pe-4">آخرین رویدادهای عصر پویا</p>
                 </div>
                 <a href="#" class="more-btn">

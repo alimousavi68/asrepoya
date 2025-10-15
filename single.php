@@ -118,7 +118,7 @@ get_header(); ?>
                     <div class="post-list-header">
                         <div class="header-content">
                             <div class="header-text">
-                                <h3 class="post-list-title fw-bold pe-4">مطالب مرتبط</h3>
+                                <h3 class="post-list-title fw-bold pe-5 pe-lg-4">مطالب مرتبط</h3>
                             </div>
                         </div>
                     </div>

@@ -14,7 +14,7 @@
         <header class="post-list-header">
             <div class="header-content">
                 <div class="header-text">
-                    <h3 class="post-list-title fw-bold pe-4">چند رسانه ای</h3>
+                    <h3 class="post-list-title fw-bold pe-5 pe-lg-4">چند رسانه ای</h3>
                     <p class="post-list-subtitle pe-4">آخرین ویدیوهای آموزشی و رویدادها</p>
                 </div>
                 <a href="<?php echo get_category_link(331); ?>" class="more-btn">

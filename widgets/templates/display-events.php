@@ -10,7 +10,7 @@
     <div class="post-list-header">
         <div class="header-content">
             <div class="header-text">
-                <h3 class="post-list-title fw-bold pe-4"><?php echo esc_html($title); ?></h3>
+                <h3 class="post-list-title fw-bold pe-5 pe-lg-4"><?php echo esc_html($title); ?></h3>
                 <p class="post-list-subtitle pe-4 text-black-50">آخرین رویدادهای عصر پویا</p>
             </div>
             <a href="<?php echo get_category_link(330); ?>" class="more-btn">

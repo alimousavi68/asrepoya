@@ -28,7 +28,7 @@ if ( post_password_required() ) {
             <div class="post-list-header">
                 <div class="header-content">
                     <div class="header-text">
-                        <h3 class="post-list-title fw-bold pe-4">
+                        <h3 class="post-list-title fw-bold pe-5 pe-lg-4">
                             <?php
                             $asrepoya_comment_count = get_comments_number();
                             if ( '1' === $asrepoya_comment_count ) {
@@ -87,7 +87,7 @@ if ( post_password_required() ) {
             <div class="post-list-header">
                 <div class="header-content">
                     <div class="header-text">
-                        <h3 class="post-list-title fw-bold pe-4">ارسال دیدگاه</h3>
+                        <h3 class="post-list-title fw-bold pe-5 pe-lg-4">ارسال دیدگاه</h3>
                     </div>
                 </div>
             </div>

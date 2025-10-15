@@ -171,7 +171,7 @@
                         <div class="post-list-header">
                             <div class="header-content">
                                 <div class="header-text">
-                                    <h3 class="post-list-title fw-bold pe-4">اخبار مهم</h3>
+                                    <h3 class="post-list-title fw-bold pe-5 pe-lg-4">اخبار مهم</h3>
                                     <p class="post-list-subtitle pe-4">آخرین اخبار و رویدادهای مهم</p>
                                 </div>
                                 <a href="<?php echo esc_url(get_category_link(8)); ?>" class="more-btn">

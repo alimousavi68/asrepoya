@@ -16,7 +16,7 @@ if ($category_id > 0) {
     <div class="post-list-header">
         <div class="header-content">
             <div class="header-text">
-                <h3 class="post-list-title fw-bold pe-4"><?php echo esc_html($title); ?></h3>
+                <h3 class="post-list-title fw-bold pe-5 pe-lg-4"><?php echo esc_html($title); ?></h3>
                 <p class="post-list-subtitle pe-4"><?php echo esc_html($subtitle); ?></p>
             </div>
             <?php if ($show_more_link && $category_obj): ?>

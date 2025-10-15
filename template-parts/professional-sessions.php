@@ -14,7 +14,7 @@
         <header class="post-list-header order-1 order-md-1">
             <div class="header-content">
                 <div class="header-text">
-                    <h2 id="sessions-title" class="post-list-title fw-bold pe-4">نشست‌های تخصصی</h2>
+                    <h2 id="sessions-title" class="post-list-title fw-bold pe-5 pe-lg-4">نشست‌های تخصصی</h2>
                     <p class="post-list-subtitle pe-4 text-black-50">آخرین رویدادهای برگزار شده توسط مرکز</p>
                 </div>
                 <a href="<?php echo get_category_link(329); ?>" class="more-btn">
