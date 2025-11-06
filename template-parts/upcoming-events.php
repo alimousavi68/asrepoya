@@ -4,6 +4,12 @@
  *
  * @package Asrepoya
  */
+
+$upcoming_events_section_visibility = get_theme_mod('asrepoya_homepage_section_upcoming_events_visibility', true);
+$upcoming_events_section_category = get_theme_mod('asrepoya_homepage_section_upcoming_events_category', 0);
+$upcoming_events_section_post_count = get_theme_mod('asrepoya_homepage_section_upcoming_events_post_count', 2);
+
+if ($upcoming_events_section_visibility) :
 ?>
 
 <!-- Upcoming Events Section -->
@@ -17,7 +23,7 @@
                     <h3 class="post-list-title fw-bold pe-5 pe-lg-4">رویدادهای پیش رو</h3>
                     <p class="post-list-subtitle pe-4 text-black-50">آخرین رویدادهای عصر پویا</p>
                 </div>
-                <a href="<?php echo get_category_link(330); ?>" class="more-btn">
+                <a href="<?php echo esc_url(get_category_link($upcoming_events_section_category)); ?>" class="more-btn">
                     <span>بیشتر</span>
                     <i class="fas fa-chevron-left"></i>
                 </a>
@@ -27,8 +33,8 @@
     <!-- Event Cards Grid -->
     <?php
     $events_query = new WP_Query(array(
-        'cat' => 330,
-        'posts_per_page' => 2,
+        'cat' => $upcoming_events_section_category,
+        'posts_per_page' => $upcoming_events_section_post_count,
         'orderby' => 'date',
         'order' => 'DESC',
     ));
@@ -156,3 +162,4 @@
     <?php wp_reset_postdata(); ?>
     </div>
 </section>
+<?php endif; ?>

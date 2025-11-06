@@ -112,11 +112,13 @@
             <?php asrepoya_primary_menu(); ?>
 
             <!-- Search Section -->
-            <div class="search-section d-flex align-items-center position-relative">
+            <form role="search" method="get" class="search-section d-flex align-items-center position-relative" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                 <input type="search" class="search-field rounded-0" placeholder="جستجو..."
-                    aria-label="جستجو در سایت">
-                <i class="fas fa-search search-icon position-absolute end-0 ms-3" aria-label="آیکون جستجو"></i>
-            </div>
+                    aria-label="جستجو در سایت" name="s">
+                <button type="submit" class="search-icon-button position-absolute end-0 ms-3" aria-label="جستجو">
+                    <i class="fas fa-search search-icon"></i>
+                </button>
+            </form>
         </div>
 
         <!-- Mobile Layout -->
@@ -130,7 +132,13 @@
 
             <!-- Mobile Logo (Centered) -->
             <div class="mobile-logo d-flex align-items-center">
-                <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/Logo-asre-poya.svg" alt="اندیشکده حکمرانی"></a> 
+                <a href="<?php echo home_url(); ?>">
+                    <?php if (get_custom_logo()): ?>
+                        <?php echo get_custom_logo(); ?>
+                    <?php else: ?>
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/Logo-asre-poya.svg" alt="<?php echo get_bloginfo('name'); ?>">
+                    <?php endif; ?>
+                </a> 
             </div>
 
             <!-- Mobile Search Icon -->
@@ -182,14 +190,13 @@
                     </button>
                 </div>
                 <div class="search-modal-body">
-                    <div class="search-input-wrapper">
+                    <form role="search" method="get" class="search-input-wrapper" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                         <input type="search" class="search-modal-input" placeholder="عبارت مورد نظر خود را وارد کنید..."
-                            aria-label="جستجو">
-                        <button class="search-modal-btn">
+                            aria-label="جستجو" name="s">
+                        <button type="submit" class="search-modal-btn">
                             <i class="fas fa-search"></i>
                         </button>
-                    </div>
-
+                    </form>
                 </div>
             </div>
         </div>

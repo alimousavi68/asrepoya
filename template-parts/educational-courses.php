@@ -4,6 +4,12 @@
  *
  * @package Asrepoya
  */
+
+$educational_courses_section_visibility = get_theme_mod('asrepoya_homepage_section_educational_courses_visibility', true);
+$educational_courses_section_category = get_theme_mod('asrepoya_homepage_section_educational_courses_category', 0);
+$educational_courses_section_post_count = get_theme_mod('asrepoya_homepage_section_educational_courses_post_count', 4);
+
+if ($educational_courses_section_visibility) :
 ?>
 
 <!-- Educational Courses Section -->
@@ -16,7 +22,7 @@
                 <h3 class="post-list-title fw-bold pe-5 pe-lg-4">دوره‌های آموزشی</h3>
                 <p class="post-list-subtitle text-black-50 pe-4">آخرین دوره‌های آموزشی و تخصصی</p>
             </div>
-            <a href="<?php echo get_category_link(342); ?>" class="more-btn">
+            <a href="<?php echo esc_url(get_category_link($educational_courses_section_category)); ?>" class="more-btn">
                 <span>مشاهده بیشتر</span>
                 <i class="fas fa-chevron-left"></i>
             </a>
@@ -30,8 +36,8 @@
         <?php
         // Query for courses posts from category 342
         $courses_query = new WP_Query(array(
-            'cat' => 342,
-            'posts_per_page' => 4,
+            'cat' => $educational_courses_section_category,
+            'posts_per_page' => $educational_courses_section_post_count,
             'orderby' => 'date',
             'order' => 'DESC'
         ));
@@ -161,3 +167,4 @@
          endif; ?>
     </div>
 </section>
+<?php endif; ?>

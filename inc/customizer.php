@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Asrepoya Theme Customizer
  *
@@ -11,6 +12,30 @@
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
 function asrepoya_customize_register( $wp_customize ) {
+    if ( ! class_exists( 'WP_Customize_Category_Control' ) ) {
+        class WP_Customize_Category_Control extends WP_Customize_Control {
+            public $type = 'category';
+
+            public function render_content() {
+                $dropdown = wp_dropdown_categories(
+                    array(
+                        'name'              => '_customize-dropdown-category-' . $this->id,
+                        'echo'              => 0,
+                        'show_option_none'  => __( '&mdash; انتخاب دسته &mdash;', 'asrepoya' ),
+                        'option_none_value' => '',
+                        'selected'          => $this->value(),
+                    )
+                );
+
+                $dropdown = str_replace( '<select', '<select ' . $this->get_link(), $dropdown );
+                printf(
+                    '<label class="customize-control-select"><span class="customize-control-title">%s</span> %s</label>',
+                    $this->label,
+                    $dropdown
+                );
+            }
+        }
+    }
     $wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
     $wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
     $wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -58,7 +83,7 @@ function asrepoya_customize_register( $wp_customize ) {
                 )
             );
         }
-
+        
         $wp_customize->selective_refresh->add_partial(
             'asrepoya_email',
             array(
@@ -115,6 +140,13 @@ function asrepoya_customize_register( $wp_customize ) {
         'priority' => 30,
     ) );
 
+    // Add a new panel for Homepage Sections
+    $wp_customize->add_panel( 'asrepoya_theme_options', array(
+        'title'       => __( 'تنظیمات قالب', 'asrepoya' ),
+        'description' => __( 'تنظیمات عمومی قالب و بخش‌های صفحه اصلی', 'asrepoya' ),
+        'priority'    => 160,
+    ) );
+
     // Add Contact Information Settings and Controls
     asrepoya_add_contact_settings( $wp_customize );
     
@@ -123,7 +155,422 @@ function asrepoya_customize_register( $wp_customize ) {
     
     // Add Social Media Settings and Controls
     asrepoya_add_social_settings( $wp_customize );
+
+    // Add Homepage Sections Settings and Controls
+    asrepoya_add_homepage_sections_settings( $wp_customize );
+
+
 }
+
+/**
+ * Add Homepage Sections Settings and Controls
+ *
+ * @param WP_Customize_Manager $wp_customize Theme Customizer object.
+ */
+function asrepoya_add_homepage_sections_settings( $wp_customize ) {
+    // Section 1: index.php lines 13-163
+    $wp_customize->add_section( 'asrepoya_homepage_section_1', array(
+        'title'    => __( 'اسلایدر اصلی', 'asrepoya' ),
+        'priority' => 10,
+        'panel'    => 'asrepoya_theme_options', // Assuming a main panel for theme options
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_1_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_1_visibility', array(
+        'label'    => __( 'نمایش  اسلایدر', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_1',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_1_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_1_category', array(
+        'label'    => __( 'دسته بندی اسلایدر ', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_1',
+        'settings' => 'asrepoya_homepage_section_1_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_1_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_1_post_count', array(
+        'label'    => __( 'تعداد پست در اسلایدر', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_1',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+
+    // Section 2: index.php lines 165-217
+    $wp_customize->add_section( 'asrepoya_homepage_section_2', array(
+        'title'    => __( 'اخبار مهم', 'asrepoya' ),
+        'priority' => 20,
+        'panel'    => 'asrepoya_theme_options',
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_2_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_2_visibility', array(
+        'label'    => __( 'نمایش  اخبار مهم', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_2',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_2_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_2_category', array(
+        'label'    => __( 'دسته بندی اخبار مهم', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_2',
+        'settings' => 'asrepoya_homepage_section_2_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_2_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_2_post_count', array(
+        'label'    => __( 'تعداد پست در اخبار مهم', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_2',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+
+    // Section 3: featured-reports.php
+    $wp_customize->add_section( 'asrepoya_homepage_section_featured_reports', array(
+        'title'    => __( 'بخش گزارشات ویژه', 'asrepoya' ),
+        'priority' => 30,
+        'panel'    => 'asrepoya_theme_options',
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_featured_reports_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_featured_reports_visibility', array(
+        'label'    => __( 'نمایش بخش گزارشات ویژه', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_featured_reports',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_featured_reports_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_featured_reports_category', array(
+        'label'    => __( 'دسته بندی گزارشات ویژه', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_featured_reports',
+        'settings' => 'asrepoya_homepage_section_featured_reports_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_featured_reports_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_featured_reports_post_count', array(
+        'label'    => __( 'تعداد پست ها در گزارشات ویژه', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_featured_reports',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+
+    // Section 4: multimedia.php
+    $wp_customize->add_section( 'asrepoya_homepage_section_multimedia', array(
+        'title'    => __( 'بخش چندرسانه‌ای', 'asrepoya' ),
+        'priority' => 40,
+        'panel'    => 'asrepoya_theme_options',
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_multimedia_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_multimedia_visibility', array(
+        'label'    => __( 'نمایش بخش چندرسانه‌ای', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_multimedia',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_multimedia_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_multimedia_category', array(
+        'label'    => __( 'دسته بندی چندرسانه‌ای', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_multimedia',
+        'settings' => 'asrepoya_homepage_section_multimedia_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_multimedia_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_multimedia_post_count', array(
+        'label'    => __( 'تعداد پست ها در چندرسانه‌ای', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_multimedia',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+
+    // Section 5: professional-sessions.php
+    $wp_customize->add_section( 'asrepoya_homepage_section_professional_sessions', array(
+        'title'    => __( 'بخش جلسات تخصصی', 'asrepoya' ),
+        'priority' => 50,
+        'panel'    => 'asrepoya_theme_options',
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_professional_sessions_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_professional_sessions_visibility', array(
+        'label'    => __( 'نمایش بخش جلسات تخصصی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_professional_sessions',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_professional_sessions_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_professional_sessions_category', array(
+        'label'    => __( 'دسته بندی جلسات تخصصی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_professional_sessions',
+        'settings' => 'asrepoya_homepage_section_professional_sessions_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_professional_sessions_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_professional_sessions_post_count', array(
+        'label'    => __( 'تعداد پست ها در جلسات تخصصی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_professional_sessions',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+
+    // Section 6: upcoming-events.php
+    $wp_customize->add_section( 'asrepoya_homepage_section_upcoming_events', array(
+        'title'    => __( 'بخش رویدادهای آینده', 'asrepoya' ),
+        'priority' => 60,
+        'panel'    => 'asrepoya_theme_options',
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_upcoming_events_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_upcoming_events_visibility', array(
+        'label'    => __( 'نمایش بخش رویدادهای آینده', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_upcoming_events',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_upcoming_events_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_upcoming_events_category', array(
+        'label'    => __( 'دسته بندی رویدادهای آینده', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_upcoming_events',
+        'settings' => 'asrepoya_homepage_section_upcoming_events_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_upcoming_events_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_upcoming_events_post_count', array(
+        'label'    => __( 'تعداد پست ها در رویدادهای آینده', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_upcoming_events',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+
+    // Section 7: publications.php
+    $wp_customize->add_section( 'asrepoya_homepage_section_publications', array(
+        'title'    => __( 'بخش انتشارات', 'asrepoya' ),
+        'priority' => 70,
+        'panel'    => 'asrepoya_theme_options',
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_publications_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_publications_visibility', array(
+        'label'    => __( 'نمایش بخش انتشارات', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_publications',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_publications_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_publications_category', array(
+        'label'    => __( 'دسته بندی انتشارات', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_publications',
+        'settings' => 'asrepoya_homepage_section_publications_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_publications_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_publications_post_count', array(
+        'label'    => __( 'تعداد پست ها در انتشارات', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_publications',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+
+    // Section 8: educational-courses.php
+    $wp_customize->add_section( 'asrepoya_homepage_section_educational_courses', array(
+        'title'    => __( 'بخش دوره‌های آموزشی', 'asrepoya' ),
+        'priority' => 80,
+        'panel'    => 'asrepoya_theme_options',
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_educational_courses_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_educational_courses_visibility', array(
+        'label'    => __( 'نمایش بخش دوره‌های آموزشی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_educational_courses',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_educational_courses_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_educational_courses_category', array(
+        'label'    => __( 'دسته بندی دوره‌های آموزشی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_educational_courses',
+        'settings' => 'asrepoya_homepage_section_educational_courses_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_educational_courses_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_educational_courses_post_count', array(
+        'label'    => __( 'تعداد پست ها در دوره‌های آموزشی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_educational_courses',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+
+    // Section 9: research-groups.php
+    $wp_customize->add_section( 'asrepoya_homepage_section_research_groups', array(
+        'title'    => __( 'بخش گروه‌های پژوهشی', 'asrepoya' ),
+        'priority' => 90,
+        'panel'    => 'asrepoya_theme_options',
+    ) );
+
+    // Setting for visibility
+    $wp_customize->add_setting( 'asrepoya_homepage_section_research_groups_visibility', array(
+        'default'           => true,
+        'sanitize_callback' => 'asrepoya_sanitize_checkbox',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_research_groups_visibility', array(
+        'label'    => __( 'نمایش بخش گروه‌های پژوهشی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_research_groups',
+        'type'     => 'checkbox',
+    ) );
+
+    // Setting for category selection
+    $wp_customize->add_setting( 'asrepoya_homepage_section_research_groups_category', array(
+        'default'           => 0,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( new WP_Customize_Category_Control( $wp_customize, 'asrepoya_homepage_section_research_groups_category', array(
+        'label'    => __( 'دسته بندی گروه‌های پژوهشی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_research_groups',
+        'settings' => 'asrepoya_homepage_section_research_groups_category',
+    ) ) );
+
+    // Setting for post count
+    $wp_customize->add_setting( 'asrepoya_homepage_section_research_groups_post_count', array(
+        'default'           => 3,
+        'sanitize_callback' => 'absint',
+    ) );
+    $wp_customize->add_control( 'asrepoya_homepage_section_research_groups_post_count', array(
+        'label'    => __( 'تعداد پست ها در گروه‌های پژوهشی', 'asrepoya' ),
+        'section'  => 'asrepoya_homepage_section_research_groups',
+        'type'     => 'number',
+        'input_attrs' => array(
+            'min' => 1,
+            'step' => 1,
+        ),
+    ) );
+}
+
+// Sanitize checkbox function
+function asrepoya_sanitize_checkbox( $checked ) {
+    return ( ( isset( $checked ) && true == $checked ) ? true : false );
+}
+
+
 add_action( 'customize_register', 'asrepoya_customize_register' );
 
 /**

@@ -4,6 +4,10 @@
  *
  * @package Asrepoya
  */
+
+$research_groups_section_visibility = get_theme_mod('asrepoya_homepage_section_research_groups_visibility', true);
+
+if ($research_groups_section_visibility) :
 ?>
 
 <!-- Research Groups Section -->
@@ -17,10 +21,7 @@
                     <h3 class="post-list-title fw-bold pe-5 pe-lg-4">گروه های پژوهشی</h3>
                     <p class="post-list-subtitle text-black-50 pe-4">آخرین رویدادهای عصر پویا</p>
                 </div>
-                <a href="#" class="more-btn">
-                    <span>بیشتر</span>
-                    <i class="fas fa-chevron-left"></i>
-                </a>
+                
             </div>
         </header>
 
@@ -54,3 +55,4 @@
         </div>
     </div>
 </section>
+<?php endif; ?>

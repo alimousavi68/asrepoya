@@ -5,6 +5,12 @@
  *
  * @package Asrepoya
  */
+
+$publications_section_visibility = get_theme_mod('asrepoya_homepage_section_publications_visibility', true);
+$publications_section_category = get_theme_mod('asrepoya_homepage_section_publications_category', 0);
+$publications_section_post_count = get_theme_mod('asrepoya_homepage_section_publications_post_count', 3);
+
+if ($publications_section_visibility) :
 ?>
 
 <!-- Publications Section -->
@@ -18,7 +24,7 @@
                     <h3 class="post-list-title fw-bold pe-5 pe-lg-4">انتشارات</h3>
                     <p class="post-list-subtitle pe-4">آخرین انتشارات</p>
                 </div>
-                <a href="<?php echo get_category_link(8); ?>" class="more-btn ">
+                <a href="<?php echo esc_url(get_category_link($publications_section_category)); ?>" class="more-btn ">
                     <span class="text-white">بیشتر</span>
                     <i class="fas fa-chevron-left"></i>
                 </a>
@@ -33,8 +39,8 @@
                     data-bs-interval="5000" data-bs-pause="hover" data-bs-wrap="true" role="region"
                     aria-labelledby="book-carousel-label"> <?php
                                                             $publications_query = new WP_Query(array(
-                                                                'cat' => 332,
-                                                                'posts_per_page' => 3,
+                                                                'cat' => $publications_section_category,
+                                                                'posts_per_page' => $publications_section_post_count,
                                                                 'orderby' => 'date',
                                                                 'order' => 'DESC',
                                                                
@@ -129,3 +135,4 @@
         </div>
     </div>
 </section>
+<?php endif; ?>

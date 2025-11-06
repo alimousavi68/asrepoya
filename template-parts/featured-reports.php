@@ -5,10 +5,16 @@
  * @package Asrepoya
  */
 
+$section_3_visibility = get_theme_mod( 'asrepoya_homepage_section_featured_reports_visibility', true );
+$section_3_category = get_theme_mod( 'asrepoya_homepage_section_featured_reports_category', '42' );
+$section_3_post_count = get_theme_mod( 'asrepoya_homepage_section_featured_reports_post_count', 3 );
+
+if ( $section_3_visibility ) : 
+
 // Query for reports section - using category "تیتر یک" (ID: 8)
 $reports_query = new WP_Query(array(
-    'cat' => 328, // Category "تیتر یک"
-    'posts_per_page' => 3, // Get 3 posts: 1 main + 2 sidebar
+    'cat' => $section_3_category, // Category "تیتر یک"
+    'posts_per_page' => $section_3_post_count, // Get 3 posts: 1 main + 2 sidebar
     'post_status' => 'publish',
     'orderby' => 'date',
     'order' => 'DESC'
@@ -21,7 +27,7 @@ if ($reports_query->have_posts()):
     $side_posts = array_slice($reports_posts, 1, 2); // Next 2 posts for sidebar
     
     // Get category link for "more" button
-    $category_link = get_category_link(328);
+    $category_link = get_category_link($section_3_category);
 ?>
 <section class="featured-posts-section container" aria-labelledby="featured-reports-title">
     <h2 id="featured-reports-title" class="visually-hidden">گزارش‌های تخصصی</h2>
@@ -120,3 +126,4 @@ if ($reports_query->have_posts()):
 </section>
 <?php endif; ?>
 <?php wp_reset_postdata(); ?>
+<?php endif; ?>

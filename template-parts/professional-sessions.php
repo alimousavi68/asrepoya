@@ -4,6 +4,12 @@
  *
  * @package Asrepoya
  */
+
+$professional_sessions_section_visibility = get_theme_mod('asrepoya_homepage_section_professional_sessions_visibility', true);
+$professional_sessions_section_category = get_theme_mod('asrepoya_homepage_section_professional_sessions_category', 0);
+$professional_sessions_section_post_count = get_theme_mod('asrepoya_homepage_section_professional_sessions_post_count', 2);
+
+if ($professional_sessions_section_visibility) :
 ?>
 
 <!-- Professional Sessions Section -->
@@ -17,7 +23,7 @@
                     <h2 id="sessions-title" class="post-list-title fw-bold pe-5 pe-lg-4">نشست‌های تخصصی</h2>
                     <p class="post-list-subtitle pe-4 text-black-50">آخرین رویدادهای برگزار شده توسط مرکز</p>
                 </div>
-                <a href="<?php echo get_category_link(329); ?>" class="more-btn">
+                <a href="<?php echo esc_url(get_category_link($professional_sessions_section_category)); ?>" class="more-btn">
                     <span>مشاهده بیشتر</span>
                     <i class="fas fa-chevron-left"></i>
                 </a>
@@ -31,8 +37,8 @@
 
                 <?php
                 $sessions_query = new WP_Query(array(
-                    'cat' => 329,
-                    'posts_per_page' => 2,
+                    'cat' => $professional_sessions_section_category,
+                    'posts_per_page' => $professional_sessions_section_post_count,
                     'orderby' => 'date',
                     'order' => 'DESC'
                 ));
@@ -190,7 +196,7 @@
             <figure class="featured-post-image">
                  <?php
                 $sessions_query_2 = new WP_Query(array(
-                    'cat' => 329,
+                    'cat' => $professional_sessions_section_category,
                     'posts_per_page' => 1,
                     'orderby' => 'date',
                     'order' => 'DESC'
@@ -210,3 +216,4 @@
         </div>
     </div>
 </section>
+<?php endif; ?>
