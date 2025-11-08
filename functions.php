@@ -191,6 +191,7 @@ function asrepoya_remove_gutenberg_styles() {
     wp_dequeue_style( 'classic-theme-styles' ); // Remove Classic Theme Styles
     wp_dequeue_style( 'wp-block-library-rtl' ); // Remove RTL version of block library
     wp_dequeue_style( 'style-rtl' ); // Remove style-rtl.min.css
+    wp_dequeue_style( 'style' ); // Remove main style.css
 }
 add_action( 'wp_enqueue_scripts', 'asrepoya_remove_gutenberg_styles', 100 );
 
