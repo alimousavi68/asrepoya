@@ -183,6 +183,17 @@ function asrepoya_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'asrepoya_scripts' );
 
+function asrepoya_remove_gutenberg_styles() {
+    wp_dequeue_style( 'wp-block-library' );
+    wp_dequeue_style( 'wp-block-library-theme' );
+    wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
+    wp_dequeue_style( 'global-styles' ); // Remove WordPress 5.9 Global Styles
+    wp_dequeue_style( 'classic-theme-styles' ); // Remove Classic Theme Styles
+    wp_dequeue_style( 'wp-block-library-rtl' ); // Remove RTL version of block library
+    wp_dequeue_style( 'style-rtl' ); // Remove style-rtl.min.css
+}
+add_action( 'wp_enqueue_scripts', 'asrepoya_remove_gutenberg_styles', 100 );
+
 /**
  * Implement the Custom Header feature.
  */
