@@ -61,7 +61,7 @@ if ($upcoming_events_section_visibility) :
                     <div class="col-md-5">
                         <div class="">
                             <?php if (has_post_thumbnail()): ?>
-                            <img src="<?php the_post_thumbnail_url('medium'); ?>"
+                            <img src="<?php the_post_thumbnail_url('image-233x326'); ?>"
                                 alt="<?php the_title(); ?>"
                                 class="event-image">
                             <?php endif; ?>

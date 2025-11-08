@@ -100,7 +100,7 @@ if ($professional_sessions_section_visibility) :
                             <?php 
                             $host_image_url = '';
                             if (!empty($session_host_image)) {
-                                $host_image_url = wp_get_attachment_image_url($session_host_image, 'thumbnail');
+                                $host_image_url = wp_get_attachment_image_url($session_host_image, 'image-75x75');
                             }
                             
                             ?>
@@ -170,7 +170,7 @@ if ($professional_sessions_section_visibility) :
                                 <?php 
                                 $second_host_image_url = '';
                                 if (!empty($second_session_host_image)) {
-                                    $second_host_image_url = wp_get_attachment_image_url($second_session_host_image, 'thumbnail');
+                                    $second_host_image_url = wp_get_attachment_image_url($second_session_host_image, 'image-75x75');
                                 }
                                
                                 ?>
@@ -206,7 +206,7 @@ if ($professional_sessions_section_visibility) :
                     $sessions_query_2->the_post();
                 ?>
                 <?php if (has_post_thumbnail()): ?>
-                    <img src="<?php the_post_thumbnail_url('large'); ?>"
+                    <img src="<?php the_post_thumbnail_url('image-952x634'); ?>"
                     alt="<?php the_title(); ?>"
                     class="w-100 h-100">
                

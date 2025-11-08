@@ -52,7 +52,7 @@ if ($reports_query->have_posts()):
             <article class="featured-post-card">
                 <div class="featured-image">
                     <a href="<?php echo get_permalink($main_post->ID); ?>" class="post-image-link">
-                        <img src="<?php echo get_the_post_thumbnail_url($main_post->ID, 'large') ?: 'https://picsum.photos/1600/900?random=1'; ?>"
+                        <img src="<?php echo get_the_post_thumbnail_url($main_post->ID, 'image-635x295') ?: 'https://picsum.photos/1600/900?random=1'; ?>"
                             alt="<?php echo esc_attr(get_the_title($main_post->ID)); ?>" class="img-fluid">
                     </a>
                 </div>
@@ -91,7 +91,7 @@ if ($reports_query->have_posts()):
                     <div class="small-post-horizontal">
                         <div class="small-post-image">
                             <a href="<?php echo get_permalink($side_post->ID); ?>" class="post-image-link">
-                                <img src="<?php echo get_the_post_thumbnail_url($side_post->ID, 'medium') ?: 'https://picsum.photos/533/300?random=' . ($index + 2); ?>"
+                                <img src="<?php echo get_the_post_thumbnail_url($side_post->ID, 'image-295x209') ?: 'https://picsum.photos/533/300?random=' . ($index + 2); ?>"
                                     alt="<?php echo esc_attr(get_the_title($side_post->ID)); ?>"
                                     class="img-fluid">
                             </a>

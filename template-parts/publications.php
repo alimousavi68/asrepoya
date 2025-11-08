@@ -67,7 +67,7 @@ if ($publications_section_visibility) :
                                         <div class="col-lg-6">
                                             <div class="book-image-container">
                                                 <?php if (has_post_thumbnail()): ?>
-                                                    <img src="<?php the_post_thumbnail_url('large'); ?>"
+                                                    <img src="<?php the_post_thumbnail_url('image-526x295'); ?>"
                                                         alt="<?php the_title(); ?>" class="img-fluid ">
                                                 <?php endif; ?>
                                             </div>
@@ -83,7 +83,7 @@ if ($publications_section_visibility) :
                                                     // Get author image URL
                                                     $author_image_url = '';
                                                     if (!empty($publication_author_image)) {
-                                                        $author_image_url = wp_get_attachment_image_url($publication_author_image, 'thumbnail');
+                                                        $author_image_url = wp_get_attachment_image_url($publication_author_image, 'image-75x75');
                                                     }
                                                     // Fallback to placeholder if no image
                                                     if (empty($author_image_url)) {

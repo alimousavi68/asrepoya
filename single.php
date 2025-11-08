@@ -140,7 +140,7 @@ get_header(); ?>
                                         <?php if (has_post_thumbnail()) : ?>
                                             <div class="related-post-image">
                                                 <a href="<?php the_permalink(); ?>">
-                                                    <?php the_post_thumbnail('medium', ['class' => 'img-fluid']); ?>
+                                                    <?php the_post_thumbnail('image-233x326', ['class' => 'img-fluid']); ?>
                                                 </a>
                                             </div>
                                         <?php endif; ?>

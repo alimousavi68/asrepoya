@@ -529,6 +529,13 @@ add_action('wp_update_nav_menu_item', function($menu_id, $menu_item_id) {
 add_action( 'after_setup_theme', function() {
     // Hero banner size
     add_image_size( 'hero-banner', 850, 510, true );
+    add_image_size( 'image-635x295', 635, 295, true );
+    add_image_size( 'image-295x209', 295, 209, true );
+    add_image_size( 'image-952x634', 952, 634, true );
+    add_image_size( 'image-75x75', 75, 75, true );
+    add_image_size( 'image-233x326', 233, 326, true );
+    add_image_size( 'image-526x295', 526, 295, true );
+
 
     // // Research card size
     // add_image_size( 'research-card', 600, 400, true );

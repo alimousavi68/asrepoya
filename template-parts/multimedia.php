@@ -51,12 +51,9 @@ if ($multimedia_section_visibility) :
                     <div class="featured-video-image position-relative">
                         <div class="ratio ratio-16x9">
                             <?php if (has_post_thumbnail()): ?>
-                                <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'large'); ?>" alt="<?php the_title(); ?>"
+                                <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'image-526x295'); ?>" alt="<?php the_title(); ?>"
                                     class="img-fluid object-fit-cover">
-                            <?php else: ?>
-                                <img src="https://picsum.photos/600/396?random=1" alt="ویدیو شاخص"
-                                    class="img-fluid object-fit-cover">
-                            <?php endif; ?>
+                          <?php endif; ?>
                         </div>
                         <!-- Play Icon -->
                         <div
