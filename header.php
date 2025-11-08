@@ -22,67 +22,17 @@
     <!-- تنظیمات پایه و متاداده -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Title tag will be handled by WordPress and RankMath -->
-    
-    <!-- SEO Meta Tags for Governance Think Tank -->
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <meta name="language" content="fa">
-    <meta name="author" content="اندیشکده حکمرانی عصر پویا">
-    <meta name="publisher" content="اندیشکده حکمرانی عصر پویا">
-    
-    <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:locale" content="fa_IR">
-    <meta property="og:type" content="<?php echo is_single() ? 'article' : 'website'; ?>">
-    <meta property="og:site_name" content="<?php bloginfo('name'); ?>">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@asrepoya">
-    
-    <!-- Additional Meta Tags for News/Think Tank -->
-    <meta name="news_keywords" content="حکمرانی, سیاست, حکمرانی,اقتصاد, اندیشکده, تحلیل, گزارش">
-    <meta name="article:publisher" content="اندیشکده حکمرانی عصر پویا">
-    
-    <?php if (is_single() && get_post_type() == 'post'): ?>
-    <!-- Article specific meta tags -->
-    <meta property="article:published_time" content="<?php echo get_the_date('c'); ?>">
-    <meta property="article:modified_time" content="<?php echo get_the_modified_date('c'); ?>">
-    <meta property="article:author" content="<?php echo get_the_author(); ?>">
-    <meta property="article:section" content="<?php echo get_the_category()[0]->name ?? 'اخبار'; ?>">
-    <?php endif; ?>
+
 
 
     
     <!-- کتابخانه‌های خارجی -->
     <!-- Bootstrap CSS برای طراحی ریسپانسیو -->
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome برای آیکون‌ها -->
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/fontawesome-all.min.css">
-    <style>
-    @font-face {
-        font-family: "Font Awesome 6 Free";
-        font-style: normal;
-        font-weight: 400;
-        font-display: block;
-        src: url("<?php echo get_template_directory_uri(); ?>/assets/css/webfonts/fa-regular-400.woff2") format("woff2");
-    }
-    @font-face {
-        font-family: "Font Awesome 6 Free";
-        font-style: normal;
-        font-weight: 900;
-        font-display: block;
-        src: url("<?php echo get_template_directory_uri(); ?>/assets/css/webfonts/fa-solid-900.woff2") format("woff2");
-    }
-    @font-face {
-        font-family: "Font Awesome 6 Brands";
-        font-style: normal;
-        font-weight: 400;
-        font-display: block;
-        src: url("<?php echo get_template_directory_uri(); ?>/assets/css/webfonts/fa-brands-400.woff2") format("woff2");
-    }
-    </style>
     <!-- استایل‌های سفارشی پروژه -->
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/main.min.css" rel="stylesheet">
+    <!-- Font Awesome برای آیکون‌ها -->
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/fontawesome-all.min.css">
     
     <?php wp_head(); ?>
 </head>
@@ -113,9 +63,9 @@
 
             <!-- Search Section -->
             <form role="search" method="get" class="search-section d-flex align-items-center position-relative" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                <input type="search" class="search-field rounded-0" placeholder="جستجو..."
+                <input type="search" class="search-field rounded-0 me-3" placeholder="جستجو..."
                     aria-label="جستجو در سایت" name="s">
-                <button type="submit" class="search-icon-button position-absolute end-0 ms-3" aria-label="جستجو">
+                <button type="submit" class="search-icon-button position-absolute end-0 ms-3 border-0 p-0" aria-label="جستجو">
                     <i class="fas fa-search search-icon"></i>
                 </button>
             </form>
@@ -148,37 +98,7 @@
         </div>
 
         <!-- Mobile Navigation -->
-        <nav class="mobile-nav" role="navigation">
-            <a href="#" class="nav-link">خانه</a>
-            <div class="mobile-dropdown">
-                <a href="#" class="nav-link mobile-dropdown-toggle d-flex justify-content-between align-items-center">
-                    گروه‌ها
-                    <i class="fas fa-chevron-down mobile-dropdown-arrow"></i>
-                </a>
-                <div class="mobile-dropdown-menu">
-                    <div class="mobile-dropdown-section">
-                        <h6 class="mobile-dropdown-title">گروه‌های پژوهشی</h6>
-                        <a href="#" class="mobile-dropdown-link">حکمرانی اقتصادی</a>
-                        <a href="#" class="mobile-dropdown-link">حکمرانی اجتماعی</a>
-                        <a href="#" class="mobile-dropdown-link">حکمرانی سیاسی</a>
-                        <a href="#" class="mobile-dropdown-link">حکمرانی فرهنگی</a>
-                    </div>
-                    <div class="mobile-dropdown-section">
-                        <h6 class="mobile-dropdown-title">مراکز تخصصی</h6>
-                        <a href="#" class="mobile-dropdown-link">مرکز مطالعات راهبردی</a>
-                        <a href="#" class="mobile-dropdown-link">مرکز نوآوری</a>
-                        <a href="#" class="mobile-dropdown-link">مرکز آموزش</a>
-                        <a href="#" class="mobile-dropdown-link">مرکز مشاوره</a>
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="nav-link">گزارش‌ها</a>
-            <a href="#" class="nav-link">نشست‌ها</a>
-            <a href="#" class="nav-link">رویدادها</a>
-            <a href="#" class="nav-link">چندرسانه‌ای</a>
-            <a href="#" class="nav-link">انتشارات</a>
-            <a href="#" class="nav-link">درباره ما</a>
-        </nav>
+        <?php asrepoya_mobile_menu(); ?>
 
         <!-- Search Modal -->
         <div class="search-modal" id="searchModal">
@@ -193,7 +113,7 @@
                     <form role="search" method="get" class="search-input-wrapper" action="<?php echo esc_url( home_url( '/' ) ); ?>">
                         <input type="search" class="search-modal-input" placeholder="عبارت مورد نظر خود را وارد کنید..."
                             aria-label="جستجو" name="s">
-                        <button type="submit" class="search-modal-btn">
+                        <button type="submit" class="search-modal-btn ">
                             <i class="fas fa-search"></i>
                         </button>
                     </form>

@@ -392,52 +392,102 @@ function asrepoya_mobile_menu() {
                 $menu_items = [];
             }
 
+            // --- Start of new logic for dynamic classes ---
+            $parent_ids_with_children = []; // Stores IDs of menu items that are parents to other items
+            
+            // First pass: Identify all menu items that are parents
+            foreach ( (array) $menu_items as $item ) {
+                foreach ( (array) $menu_items as $potential_child ) {
+                    if ( $potential_child->menu_item_parent == $item->ID ) {
+                        $parent_ids_with_children[] = (int)$item->ID;
+                        break; // Found a child, so this item is a parent, move to next item
+                    }
+                }
+            }
+            $parent_ids_with_children = array_unique($parent_ids_with_children);
+            
+            // Second pass: Add classes based on parent-child relationships
+            foreach ( (array) $menu_items as &$item ) { // Use reference to modify original array
+                if (!is_array($item->classes)) {
+                    $item->classes = [];
+                }
+            
+                // Rule 1: Add 'menu-item-has-children' to top-level parents
+                if ( $item->menu_item_parent == 0 && in_array($item->ID, $parent_ids_with_children) ) {
+                    if (!in_array('menu-item-has-children', $item->classes)) {
+                        $item->classes[] = 'menu-item-has-children';
+                    }
+                }
+            
+                // Rule 2: Add 'mobile-dropdown-section' to direct children of top-level dropdowns that also have children
+                // This means: item is a child AND its parent is a top-level dropdown AND item itself is a parent
+                if ( $item->menu_item_parent != 0 && in_array((int)$item->menu_item_parent, $parent_ids_with_children) && in_array($item->ID, $parent_ids_with_children) ) {
+                    // Check if its parent is a top-level item (menu_item_parent == 0)
+                    $parent_is_top_level_dropdown = false;
+                    foreach ( (array) $menu_items as $potential_parent ) {
+                        if ( $potential_parent->ID == $item->menu_item_parent && $potential_parent->menu_item_parent == 0 ) {
+                            $parent_is_top_level_dropdown = true;
+                            break;
+                        }
+                    }
+            
+                    if ($parent_is_top_level_dropdown) {
+                        if (!in_array('mobile-dropdown-section', $item->classes)) {
+                            $item->classes[] = 'mobile-dropdown-section';
+                        }
+                    }
+                }
+            }
+            unset($item); // Break the reference
+            // --- End of new logic for dynamic classes ---
+
             $menu_list = '<nav class="mobile-nav" role="navigation">';
-        $current_parent = 0;
+            $current_parent = 0;
 
-        foreach ( (array) $menu_items as $key => $menu_item ) {
-            $title = $menu_item->title;
-            $url = $menu_item->url;
-            // Ensure $menu_item->classes is an array before imploding
-            $classes = is_array( $menu_item->classes ) ? implode( ' ', $menu_item->classes ) : '';
+            foreach ( (array) $menu_items as $key => $menu_item ) {
+                $title = $menu_item->title;
+                $url = $menu_item->url;
+                // Ensure $menu_item->classes is an array before imploding
+                $classes = is_array( $menu_item->classes ) ? implode( ' ', $menu_item->classes ) : '';
 
-            if ( $menu_item->menu_item_parent == 0 ) { // Top-level item
-                if ( $current_parent != 0 ) {
-                    $menu_list .= '</div></div>'; // Close previous dropdown
-                }
-                if ( is_array( $menu_item->classes ) && in_array( 'menu-item-has-children', $menu_item->classes ) ) {
-                    $menu_list .= '<div class="mobile-dropdown">';
-                    $menu_list .= '<a href="#" class="nav-link mobile-dropdown-toggle d-flex justify-content-between align-items-center">';
-                    $menu_list .= $title;
-                    $menu_list .= '<i class="fas fa-chevron-down mobile-dropdown-arrow"></i>';
-                    $menu_list .= '</a>';
-                    $menu_list .= '<div class="mobile-dropdown-menu">';
-                    $current_parent = $menu_item->ID;
-                } else {
-                    $menu_list .= '<a href="' . esc_url( $url ) . '" class="nav-link ' . esc_attr( $classes ) . '">' . esc_html( $title ) . '</a>';
-                    $current_parent = 0;
-                }
-            } elseif ( $menu_item->menu_item_parent == $current_parent ) { // Child item of current parent
-                if ( is_array( $menu_item->classes ) && in_array( 'mobile-dropdown-section', $menu_item->classes ) ) {
-                    $menu_list .= '<div class="mobile-dropdown-section">';
-                    $menu_list .= '<h6 class="mobile-dropdown-title">' . esc_html( $title ) . '</h6>';
-                } else {
+                if ( $menu_item->menu_item_parent == 0 ) { // Top-level item
+                    if ( $current_parent != 0 ) {
+                        $menu_list .= '</div></div>'; // Close previous dropdown
+                    }
+                    if ( is_array( $menu_item->classes ) && in_array( 'menu-item-has-children', $menu_item->classes ) ) {
+                        $menu_list .= '<div class="mobile-dropdown">';
+                        $menu_list .= '<a href="#" class="nav-link mobile-dropdown-toggle d-flex justify-content-between align-items-center">';
+                        $menu_list .= $title;
+                        $menu_list .= '<i class="fas fa-chevron-down mobile-dropdown-arrow"></i>';
+                        $menu_list .= '</a>';
+                        $menu_list .= '<div class="mobile-dropdown-menu">';
+                        $current_parent = $menu_item->ID;
+                    } else {
+                        $menu_list .= '<a href="' . esc_url( $url ) . '" class="nav-link ' . esc_attr( $classes ) . '">' . esc_html( $title ) . '</a>';
+                        $current_parent = 0;
+                    }
+                } elseif ( $menu_item->menu_item_parent == $current_parent ) { // Child item of current parent
+                    if ( is_array( $menu_item->classes ) && in_array( 'mobile-dropdown-section', $menu_item->classes ) ) {
+                        $menu_list .= '<div class="mobile-dropdown-section">';
+                        $menu_list .= '<h6 class="mobile-dropdown-title">' . esc_html( $title ) . '</h6>';
+                    } else {
+                        $menu_list .= '<a href="' . esc_url( $url ) . '" class="mobile-dropdown-link ' . esc_attr( $classes ) . '">' . esc_html( $title ) . '</a>';
+                    }
+                } else { // Child item of another parent or a grandchild
+                    // This part needs more complex logic if you have more than 2 levels of dropdowns
+                    // For now, we assume max 2 levels (parent -> child)
                     $menu_list .= '<a href="' . esc_url( $url ) . '" class="mobile-dropdown-link ' . esc_attr( $classes ) . '">' . esc_html( $title ) . '</a>';
                 }
-            } else { // Child item of another parent or a grandchild
-                // This part needs more complex logic if you have more than 2 levels of dropdowns
-                // For now, we assume max 2 levels (parent -> child)
-                $menu_list .= '<a href="' . esc_url( $url ) . '" class="mobile-dropdown-link ' . esc_attr( $classes ) . '">' . esc_html( $title ) . '</a>';
             }
-        }
 
-        if ( $current_parent != 0 ) {
-            $menu_list .= '</div></div>'; // Close any remaining dropdown
+            if ( $current_parent != 0 ) {
+                $menu_list .= '</div></div>'; // Close any remaining dropdown
+            }
+            $menu_list .= '</nav>';
+            echo $menu_list;
         }
-        $menu_list .= '</nav>';
-        echo $menu_list;
     }
-}
+
 
 
 // در functions.php تم اضافه کنید
