@@ -100,7 +100,7 @@ if ($multimedia_section_visibility) :
                             <article class="video-grid-card position-relative">
                                 <div class="ratio ratio-16x9">
                                     <?php if (has_post_thumbnail()): ?>
-                                        <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'medium'); ?>" alt="<?php the_title(); ?>"
+                                        <img src="<?php echo get_the_post_thumbnail_url(get_the_ID(), 'image-295x209'); ?>" alt="<?php the_title(); ?>"
                                             class="img-fluid object-fit-cover">
                                     <?php else: ?>
                                         <img src="https://picsum.photos/260/190?random=<?php echo $post_count; ?>" alt="ویدیو <?php echo $post_count - 1; ?>"
