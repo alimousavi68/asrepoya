@@ -168,7 +168,7 @@ function asrepoya_scripts() {
     wp_enqueue_style( 'asrepoya-style', get_stylesheet_uri(), array(), '1.0.0' );
     
     // Theme main stylesheet (includes social media styles).
-    wp_enqueue_style( 'asrepoya-main', get_template_directory_uri() . '/assets/css/main.css', array(), '1.0.0' );
+    wp_enqueue_style( 'asrepoya-main', get_template_directory_uri() . '/assets/css/main.min.css', array(), '1.0.0' );
 
     // Bootstrap JavaScript
     wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js', array('jquery'), '5.3.0', true );
@@ -191,7 +191,8 @@ function asrepoya_remove_gutenberg_styles() {
     wp_dequeue_style( 'classic-theme-styles' ); // Remove Classic Theme Styles
     wp_dequeue_style( 'wp-block-library-rtl' ); // Remove RTL version of block library
     wp_dequeue_style( 'style-rtl' ); // Remove style-rtl.min.css
-    wp_dequeue_style( 'style' ); // Remove main style.css
+    wp_dequeue_style( 'asrepoya-style' ); // Remove main style.css
+    wp_dequeue_script( 'wp-emoji-release' ); // Remove wp-emoji-release.min.js
 }
 add_action( 'wp_enqueue_scripts', 'asrepoya_remove_gutenberg_styles', 100 );
 

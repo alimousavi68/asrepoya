@@ -29,8 +29,6 @@
     <!-- کتابخانه‌های خارجی -->
     <!-- Bootstrap CSS برای طراحی ریسپانسیو -->
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
-    <!-- استایل‌های سفارشی پروژه -->
-    <link href="<?php echo get_template_directory_uri(); ?>/assets/css/main.min.css" rel="stylesheet">
     <!-- Font Awesome برای آیکون‌ها -->
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/fontawesome-all.min.css">
     
