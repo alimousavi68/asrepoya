@@ -186,6 +186,7 @@ if ($professional_sessions_section_visibility) :
                                 </div>
                             <?php endif; ?>
                         </div>
+                        <div class="content-divider"></div>
                     <?php endwhile; ?>
                     <?php wp_reset_postdata(); ?>
                 </div>
