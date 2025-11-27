@@ -107,7 +107,7 @@ $main_category = i8_get_post_main_category( $post_id );
                 
                 <?php if ( $host ) : ?>
                     <div class="session-host">
-                        <strong>میزبان:</strong> <?php echo esc_html( $host ); ?>
+                        <strong>میهمان:</strong> <?php echo esc_html( $host ); ?>
                         <?php if ( $position ) : ?>
                             <span class="position">(<?php echo esc_html( $position ); ?>)</span>
                         <?php endif; ?>

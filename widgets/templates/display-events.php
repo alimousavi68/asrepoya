@@ -84,7 +84,7 @@
                                     <small class="text-muted">
                                         <i class="fas fa-microphone me-1" aria-hidden="true"></i>
                                         <?php if (!empty($session_host)): ?>
-                                            میزبان: <?php echo esc_html($session_host); ?>
+                                            میهمان: <?php echo esc_html($session_host); ?>
                                             <?php if (!empty($session_position)): ?>
                                                 (<?php echo esc_html($session_position); ?>)
                                             <?php endif; ?>

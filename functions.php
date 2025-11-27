@@ -733,17 +733,17 @@ function i8_post_details_callback( $post ) {
                        value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_date', true ) ); ?>" />
             </div>
             <div class="field-group">
-                <label for="i8_session_host">نام میزبان:</label>
+                <label for="i8_session_host">نام میهمان:</label>
                 <input type="text" name="i8_session_host" id="i8_session_host" 
                        value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_host', true ) ); ?>" />
             </div>
             <div class="field-group">
-                <label for="i8_session_position">سمت میزبان:</label>
+                <label for="i8_session_position">سمت میهمان:</label>
                 <input type="text" name="i8_session_position" id="i8_session_position" 
                        value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_position', true ) ); ?>" />
             </div>
             <div class="field-group">
-                <label for="i8_session_host_image">تصویر میزبان:</label>
+                <label for="i8_session_host_image">تصویر میهمان:</label>
                 <input type="hidden" name="i8_session_host_image" id="i8_session_host_image" 
                        value="<?php echo esc_attr( get_post_meta( $post->ID, 'i8_session_host_image', true ) ); ?>" />
                 <div class="image-upload-container">
@@ -909,7 +909,7 @@ function i8_post_details_callback( $post ) {
                 
                 // Create the media uploader
                 sessionHostMediaUploader = wp.media({
-                    title: 'انتخاب تصویر میزبان',
+                    title: 'انتخاب تصویر میهمان',
                     button: {
                         text: 'انتخاب تصویر'
                     },
